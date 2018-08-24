@@ -98,8 +98,25 @@ class JournalStaticPageFile(object):
         self.filename = filename
         self.name = os.path.basename(filename)
         self.version = self.versions[self.name[0]]
-        self.content = self._read()
-        self.tree = BeautifulSoup(self.content, 'lxml')
+        self.file_content = self._read()
+        self.tree = BeautifulSoup(self.file_content, 'lxml')
+
+    @property
+    def _body_tree(self):
+        if self.tree.body is not None:
+            return self.tree.body
+        return self.tree
+
+    @property
+    def content(self):
+        if self.tree is None:
+            return self.file_content
+        return str(self.tree)
+
+    @property
+    def body_content(self):
+        if self._body_tree is not None:
+            return str(self._body_tree)
 
     def _info(self, msg):
         logger.debug('%s %s' % (self.filename, msg))
@@ -118,12 +135,6 @@ class JournalStaticPageFile(object):
             logging.error(u'%s' % e)
         return _content or ''
 
-    @property
-    def _body_tree(self):
-        if self.tree.body is not None:
-            return self.tree.body
-        return self.tree
-
     def _remove_anchors(self):
         items = self._body_tree.find_all('a')
         for item in items:
@@ -135,15 +146,18 @@ class JournalStaticPageFile(object):
 
     def _insert_bold_to_p_subtitulo(self):
         p_items = self._body_tree.find_all('p')
+
         for p in p_items:
             style = p.get('class')
-            if style is not None and 'subtitulo' == str(style).strip():
-                if not p.find_all('b'):
-                    new_tag = self.tree.new_tag("b")
-                    new_tag.string = p.text
-                    p.clear()
-                    p.append(new_tag)
-                    del p['class']
+            if style is not None:
+                if 'subtitulo' in list(style):
+                    if not p.find_all('b'):
+                        new_tag = self.tree.new_tag("b")
+                        new_tag.string = p.text
+                        print(p, new_tag)
+                        p.clear()
+                        p.append(new_tag)
+                        del p['class']
 
     def _indicate_middle_begin(self):
         new_tag = self.tree.new_tag("p")
@@ -153,13 +167,16 @@ class JournalStaticPageFile(object):
             header = str(table)
             if 'Editable' in header and '<!--' in header and '-->' in header:
                 table.insert_after(new_tag)
-                return True
+                return new_tag
             elif 'href="#0' in header:
                 table.insert_after(new_tag)
-                return True
+                return new_tag
             elif 'script=sci_serial' in header:
                 table.insert_after(new_tag)
-                return True
+                return new_tag
+            elif '/scielo.php?lng=' in header:
+                table.insert_after(new_tag)
+                return new_tag
         self._info('no header found.')
 
     def _indicate_middle_end(self):
@@ -181,25 +198,31 @@ class JournalStaticPageFile(object):
             new_tag = self.tree.new_tag("p")
             new_tag['id'] = 'middle_end'
             p.insert_before(new_tag)
-            return True
+            return new_tag
         self._info('no footer found.')
 
-    def _get_middle_children(self, _find_begin, _find_end):
-        find_begin = _find_begin
-        find_end = _find_end
-        elements = []
+    def _get_middle_children_eval_child(self, child, p_begin, p_end, task):
+        if task == 'find_p_begin':
+            if child == p_begin:
+                task = 'find_p_end'
+            return task, None
+        if task == 'find_p_end' and child == p_end:
+            return 'stop', None
+        if isinstance(child, Comment):
+            return task, None
+        return task, child
+
+    def _get_middle_children(self, p_begin, p_end):
+        task = 'find_p_begin'
+        items = []
         for child in self._body_tree.children:
-            if find_begin:
-                if child.name == 'p' and \
-                        child.get('id') == 'middle_begin':
-                    find_begin = False
-            else:
-                if find_end and child.name == 'p' and \
-                        child.get('id') == 'middle_end':
-                    break
-                elif not isinstance(child, Comment):
-                    elements.append(child)
-        return elements
+            task, item = self._get_middle_children_eval_child(
+                child, p_begin, p_end, task)
+            if item is not None:
+                items.append(item)
+            if task == 'stop':
+                break
+        return items
 
     @property
     def anchor_name(self):
@@ -222,7 +245,7 @@ class JournalStaticPageFile(object):
 
     def _get_unavailable_message(self):
         self._unavailable_message = None
-        text = self._check_unavailable_message(str(self._body_tree))
+        text = self._check_unavailable_message(self.body_content)
         if text:
             p_items = self.sorted_by_relevance
             msg = self._check_unavailable_message(p_items[0][1])
