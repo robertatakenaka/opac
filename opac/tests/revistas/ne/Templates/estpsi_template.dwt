@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Template</title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0103-166X&lng=es&nrm=iso"><img
+    src="/img/revistas/estpsi/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0103-166X <!-- #BeginEditable "impressa" --><i>versión 
+        impresa</i><!-- #EndEditable --> <br>
+        ISSN 1982-0275<i> <!-- #BeginEditable "online" --><i>versión impresa</i><!-- #EndEditable --></i></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> <a name="end"></a> 
+<p align="center" class="rodapep">Av. John Boyd Dunlop, s/n., N&uacute;cleo de 
+  Editora&ccedil;&atilde;o, Pr&eacute;dio de Odontologia, Jd. Ipaussurama<br>
+  CEP 13060-904 Campinas SP Brasil<br>
+  Tel.: +55 19 3343-6875<br>
+  Fax: +55 19 3729-6875</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:ccv.revistas@puc-campinas.edu.br">ccv.revistas@puc-campinas.edu.br</a></p>
+</body>
+</html>

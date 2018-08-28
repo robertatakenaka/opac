@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Acta ortop. bras.</title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=1413-7852&lng=es&nrm=iso"><img
+    src="/img/revistas/aob/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 2176-7521 
+	   <!-- #BeginEditable "impressa" --><i> 
+        versión impresa</i><!-- #EndEditable --><br>
+		ISSN 1413-7852<!-- #BeginEditable "impressa" --><i>versión impresa inglês</i><!-- #EndEditable --><br>
+		
+ISSN 1809-4406 <!-- #BeginEditable "online" --><i> 
+        versión online</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> <a name="end"></a> 
+<p align="center" class="rodapep">Al. Lorena, 427 - 14&ordm; and - Jd. Paulista<br>
+  01424-000 - S&atilde;o Paulo - SP - Brasil<br>
+  Tel.: +55 11 0800-557268<br>
+</p>
+<p align="center"><a href="mailto:1atha@uol.com.br"><img
+src="/img/revistas/e-mailt.gif" border="0"></a><br>
+  <a href="mailto:1atha@uol.com.br">1atha@uol.com.br</a> </p>
+</body>
+</html>

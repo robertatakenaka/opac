@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Braz. Dent. J.</title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0103-6440&lng=es&nrm=iso"><img
+    src="/img/revistas/bdj/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0103-6440 <!-- #BeginEditable "impressa" --><i> 
+        print version</i><!-- #EndEditable --> <br>
+        ISSN 1806-4760 <!-- #BeginEditable "Online" --><i>online version</i><!-- #EndEditable --> 
+      </p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a> 
+<p align="center" class="rodape">© 2007 Funda&ccedil;&atilde;o Odontol&oacute;gica 
+  de Ribeir&atilde;o Preto</p>
+<p align="center" class="rodapep">Av. do Café, S/N<br>
+  14040-904 Ribeirão Preto SP Brasil<br>
+  Tel.: +55 16 602-3982<br>
+  Fax: +55 16 633-0999</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:bdj@forp.usp.br">bdj@forp.usp.br</a></p>
+</body>
+</html>

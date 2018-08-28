@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Atualizar nas p&aacute;ginas!</title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style><body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="../bgoeldi/Templates/Atualizar%20nas%20p%E1ginas!"><img
+    src="../bgoeldi/Templates/Atualizar%20nas%20p%E1ginas!" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 1981-8122<!-- #BeginEditable "impressa" --><i> 
+        versión impresa (Atualizar nas p&aacute;ginas!)</i><!-- #EndEditable --> 
+      </p>
+      <p align="center" class="issn">ISSN 2178-2547<!-- #BeginEditable "on-line" --><i> 
+        versión on-line (Atualizar nas p&aacute;ginas!)</i><!-- #EndEditable --> 
+      </p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}<br>
+          Atualizar na páginas!</p>
+      </blockquote>
+      <ul>
+        <li>{Link}<br>
+          Atualizar nas páginas!</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<br>
+Atualizar nas páginas!<br>
+<!-- #EndEditable --> 
+<p><a name="end"></a> 
+</p>
+<p align="center" class="rodapep">Av. Magalhães Barata, 376 - São Brás<br>
+  66040-170 - Bel&eacute;m - Par&aacute; - Brasil<br>
+  Tel./Fax: 91-3249-6373</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:e-mail">boletim.humanas@museu-goeldi.br	
+</a></p>
+</body>
+</html>

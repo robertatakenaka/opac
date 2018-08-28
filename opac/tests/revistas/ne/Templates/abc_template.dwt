@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Arq. Bras. Cardiol. - </title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0066-782X&lng=es&nrm=iso"><img
+    src="/img/revistas/abc/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0066-782X <!-- #BeginEditable "impressa" --><i>versión 
+        impresa</i><!-- #EndEditable --><br>
+        ISSN 1678-4170 <!-- #BeginEditable "online" --><i>versión online</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a> 
+<p align="center" class="rodape">© 2002-2007 ABC</p>
+<p align="center" class="rodapep">Rua Beira Rio, 45, 3&ordm; and.<br>
+  04548-050 S&atilde;o Paulo SP - Brazil<br>
+  Tel./Fax: +55 11 3849-6438</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:arquivos@cardiol.br">arquivos@cardiol.br</a></p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Ci. Tecnol. Aliment - </title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0101-2061&lng=es&nrm=iso"><img
+    src="/img/revistas/cta/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0101-2061 <!-- #BeginEditable "impresso" --><i>versión 
+        impresa</i><!-- #EndEditable --><br>
+        ISSN 1678-457X <!-- #BeginEditable "online" --><i>versión online</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a>
+<p align="center" class="rodape">© 2007 SBCTA</p>
+<p align="center" class="rodapep">Av. Brasil, 2880<br>
+  Caixa Postal 271<br>
+  13001-970 - Campinas SP - Brasil<br>
+  Tel.: +55 19 3241-5793<br>
+  Fax: +55 19 3241-0527</p>
+<p align="center"><a href="mailto:public@ital.org.br"><img
+src="/fbpe/img/revistas/e-mailt.gif" border="0"></a><br>
+  <a href="mailto:publicacoes@sbcta.org.br">publicacoes@sbcta.org.br</a></p>
+</body>
+</html>

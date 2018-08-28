@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>T&iacute;tulo Abreviado da revista - </title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=trocaISSN&lng=es&nrm=iso"><img
+    src="/img/revistas/trocaacro/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 1808-1851<!-- #BeginEditable "impressa" --><i> 
+        versión impresa</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> <p><a name="end"></a> 
+</p>
+<p align="center" class="rodapep">Al. Lorena, 1304 cj. 1406/1407<br>
+  01424-001 S&atilde;o Paulo, SP, Brasil<br>
+  Tel.: (55 11) 3088-6616</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:revistacoluna@uol.com.br">revistacoluna@uol.com.br</a></p>
+</body>
+</html>

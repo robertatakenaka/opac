@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<LINK rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<TITLE> Physis </TITLE>
+<!-- #EndEditable --> 
+</HEAD>
+<BODY>
+<TABLE width="100%" border="0"> <TR> <TD width="35%" align="center" valign="top" height="92"> 
+<P><!-- #BeginEditable "link" --><A href="/scielo.php?script=sci_serial&pid=1676-0603&lng=es&nrm=iso"><IMG
+    src="/img/revistas/bn/plogo.gif" border="0"></A><!-- #EndEditable --></P><P align="center" class="issn"><P align="center" class="issn">ISSN 
+1676-0603 <I><!-- #BeginEditable "online" -->vers&atilde;o on-line em portugu&ecirc;s<!-- #EndEditable --></I><BR> 
+ISSN 1676-0611<I><!-- #BeginEditable "Online" -->vers&atilde;o on-line em ingl&ecirc;s<!-- #EndEditable --><BR></I>ISSN 
+0102-8650 <I><!-- #BeginEditable "Impresso" -->vers&atilde;o impressa multiling&uuml;e<!-- #EndEditable --></I></P></TD><TD width="65%" valign="top" align="left" height="92"><!-- #BeginEditable "topo" --> 
+<BLOCKQUOTE> <P class="titulo">{Topo}</P></BLOCKQUOTE><UL> <LI>{Link}</LI></UL><!-- #EndEditable --></TD></TR> 
+</TABLE><!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> <HR noshade> 
+<A name="end"></A> 
+<P align="center" class="rodape">© 2007 Programa BIOTA/FAPESP</P>
+<P align="center" class="rodapep">Departamento 
+de Bot&acirc;nica - Instituto de Biologia - UNICAMP CP 6109<BR> 13083-970 - Campinas 
+- SP - Brasil<BR> Tel.: +55 19 3788-6166<BR>Fax.: +55 19 3788-6168</P><P align="center"><IMG
+src="/img/revistas/e-mailt.gif" border="0"><BR> <A HREF="mailto:cjoly@unicamp.br">cjoly@unicamp.br</A></P>
+</BODY>
+</HTML>

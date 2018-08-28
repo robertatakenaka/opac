@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Rev. Ass. Med. Brasil. - </title>
+<!-- #EndEditable -->
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0104-4230&lng=es&nrm=iso"><img
+    src="/img/revistas/ramb/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN <strong>1518-6776</strong> <!-- #BeginEditable "impressa" --><i> 
+        versión impresa</i><!-- #EndEditable --> <br>
+        ISSN <b>1678-6971 </b><!-- #BeginEditable "Online" --><i>versi&oacute;n 
+      online</i><!-- #EndEditable --> </p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a>
+<p align="center" class="rodapep">Rua da Consola&ccedil;&atilde;o, 896<br>
+  Edif&iacute;cio Rev. Modesto Carvalhosa<br>
+  T&eacute;rreo - Coordena&ccedil;&atilde;o da RAM<br>
+  Consola&ccedil;&atilde;o<br>
+  <b>Tel.: +55 11-2114-8843<br>
+  </b>Atendimento das 13h &agrave;s 22h de Segunda &agrave;  Sexta-feira</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:revista.adm@mackenzie.br">revista.adm@mackenzie.br</a> </p>
+</body>
+</html>

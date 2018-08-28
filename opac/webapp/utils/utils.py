@@ -326,12 +326,13 @@ def fix_page_content(filename, content):
     return JournalStaticPage(filename, content).body
 
 
-def fix_page(journal_pages_path, files):
+def get_new_page(journal_pages_path, files):
     """
     Extract the header and the footer of the page
     Insert the anchor based on filename
     """
     content = []
+    img_paths = []
     unavailable_message = None
     for file in files:
         file_path = os.path.join(journal_pages_path, file)
@@ -341,9 +342,10 @@ def fix_page(journal_pages_path, files):
             unavailable_message = page.unavailable_message
         else:
             content.append(page.body)
+            img_paths.extend(page.img_paths)
     if unavailable_message is not None:
         content.append(unavailable_message)
-    return '\n'.join(content)
+    return '\n'.join(content), sorted(list(set(img_paths)))
 
 
 def extract_images(content):

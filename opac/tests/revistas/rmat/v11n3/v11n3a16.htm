@@ -1,0 +1,443 @@
+
+
+
+
+<html>
+<head>
+</head>
+<body>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="4"><b>Análise das 
+  deformações em tubos de aço reparados com compósitos tipo carbono/epóxi </b> 
+  </font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>Analysis of 
+  the deformations in steel pipes repaired with carbon/epoxy composites </b> </font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Cinthia Thaís 
+  de Carvalho Luz Thomazi; Flaminio Levy Neto</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Departamento de 
+  Engenharia Mecânica – UnB/FT/ENM. Asa Norte, Brasília, DF. CEP: 70910-900. e-mail: 
+  <a href="mailto:cthomazi@unb.br">cthomazi@unb.br</a>, <a href="mailto:flaminio@unb.br"> 
+  flaminio@unb.br</a> </font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr size="1" noshade>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>RESUMO</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">O objetivo principal 
+  desde trabalho é apresentar os valores de deformações normais circunferenciais 
+  obtidos através de simulações numéricas de tubos metálicos (Aço AISI 1020, comprimento 
+  L = 400 mm, diâmetro externo D = 100 mm e espessura t = 2 mm) nas três condições 
+  a seguir: (i) inicialmente íntegros; (ii) desbastados em 50% na espessura, ao 
+  longo de 25% de sua região central, para simular um defeito; e (iii) reparados 
+  com o compósito Carbono / Epóxi (tecido balanceado de fibras, AS4 – Hexcel), 
+  submetidos a diferentes pressões internas, na faixa de 2 a 10 MPa, utilizando 
+  para isso o software não linear de elementos finitos COMPSHELL. E, adicionalmente, 
+  verificar se os reparos compósitos aplicados restauram a rigidez original do 
+  tubo, anterior ao desbaste. Observou-se que existe uma espessura mínima necessária 
+  para que o reparo de Carbono/Epóxi recupere totalmente a rigidez local perdida 
+  com o desbaste, sendo utilizadas como referências para avaliar a eficácia do 
+  reparo o deslocamento radial e a deformação circunferencial do tubo. A espessura 
+  mínima do reparo depende, diretamente, da relação entre os módulos de elasticidade 
+  do reparo e do material original do tubo. No caso específico deste trabalho 
+  com tubos de aço, a espessura requerida do reparo é de 3,05 mm.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Palavras chaves</b>:&nbsp; 
+  reparos compósitos, dutos metálicos.</font></p>
+<hr size="1" noshade>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>ABSTRACT</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">The main objective 
+  of this work is to present the values of the circumferential normal deformations 
+  obtained from numerical simulations of metallic pipes (AISI Steel 1020, length 
+  L = 400 mm, external diameter D = 400 mm and thickness t = 2 mm) in the following 
+  conditions: (i) perfect; (ii) machined on 25% of its length along its central 
+  region to a thinckness reduction of 50%, in order to simulate a defect; and 
+  (iii) repaired with a carbon/epoxy composite (balanced woven fabrics of fibers, 
+  AS4 – Hexcel), subjected to different internal pressures, from 2 to 10 MPa, 
+  using the non linear finite element program COMPSHELL. And, in addition, to 
+  verify if the applied composite repairing are able to restore the original stiffness 
+  of the pipes, previous to the machining operation. It was observed that there 
+  is a minimum thickness, which is required for the carbon/epoxy repairing to 
+  restore the local stiffness lost on the machining operation. The radial displacements 
+  and the circumferential strain were used as references to evaluate how effective 
+  the repair was. The minimum thickness of the repairing depends on the ratio 
+  of the elasticity moduli of the repaired and the original material of the tube. 
+  As far as this work is concerned, the required repair thickness is 3.05 mm.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Keywords</b>: 
+  composite repairings, metallic pipes.</font></p>
+<hr size="1" noshade>
+<p>&nbsp;</p>
+<p>&nbsp; </p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>1 INTRODU&Ccedil;&Atilde;O</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">O uso de materiais 
+  compósitos de matriz polimérica reforçada com fibras, utilizados no reparo de 
+  dutos metálicos, vem crescendo em função das vantagens que oferecem &#91;1&#93;. A resina 
+  epóxi, que é um excelente adesivo, é empregada como matriz e tecidos balanceados 
+  de fibra de carbono são responsáveis pela resistência mecânica e a rigidez do 
+  compósito. Neste sentido, trabalhos experimentais e teóricos vem sendo executados 
+  neste assunto. Entretanto, a realização de testes tem custo elevado. Mas, utilizando-se 
+  programas de elementos finitos, é possível simular com precisão aceitável o 
+  comportamento mecânico de tubulações submetidas a pressões hidrostáticas internas 
+  &#91;2&#93;. Neste trabalho, o objetivo principal foi realizar simulações através de 
+  um modelo não linear de elementos finitos, utilizando o programa COMPSHELL &#91;3, 
+  4&#93;, para tubos de Aço AISI 1020, íntegros, desbastados e reparados com Carbono/epóxi, 
+  segundo as configurações apresentadas na <a href="#tab1">Tabela 1</a>. Os compósitos 
+  de Carbono/epóxi combinam baixa densidade (inferior à do aço 1020 por um fator 
+  maior que 4 vezes) com elevados valores de rigidez e resistência mecânica e 
+  tem grande potencial para uso em de reparos estruturais &#91;5, 6, 7&#93;.</font></p>
+<p><a name="tab1"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16tab1.gif"></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">As simulações visam 
+  avaliar a quantidade de reparo necessária a ser empregada na região desbastada, 
+  que permita a restauração do comportamento elástico do tubo, comparado ao tubo 
+  íntegro, quando submetido a diferentes pressões internas, tendo como referência 
+  as deformações circunferenciais. Para uma tubulação sob pressão interna, se 
+  um trecho é desbastado, o "estufamento" refere-se ao aumento localizado do raio, 
+  em relação ao restante da tubulação que apresenta parede íntegra. Sendo que, 
+  no caso de um trecho ter reparo com espessura excessiva, o "estrangulamento" 
+  refere-se a uma diminuição localizada do raio. Assim, se a espessura de um reparo 
+  for superior à ideal, pode haver um "estrangulamento" do tubo na região reparada. 
+  Mas, se a espessura for insuficiente o trecho reparado pode "estufar". Neste 
+  trabalho, é proposta uma metodologia que permite, dadas as características mecânicas 
+  e geométricas do tubo desbastado e do reparo, obter a espessura ideal do reparo 
+  que restaura a rigidez original do tubo íntegro. Desta forma, o tubo passa a 
+  apresentar um aumento de raio praticamente uniforme ao ser pressurizado internamente.</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>2 SIMULA&Ccedil;&Atilde;O 
+  NUM&Eacute;RICA - COMPSHELL</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>2.1&nbsp; Metodologia</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Para a simulação 
+  numérica, foram considerados: (i) um tubo de Aço AISI 1020, íntegro, de espessura 
+  nominal t = 2 mm e diâmetro externo d<sub>ext</sub> = 100 mm; (ii) um tubo de 
+  Aço AISI 1020, desbastado em 50% de sua espessura ao longo de 25% do comprimento 
+  na região central, representado pela <a href="/img/revistas/rmat/v11n3/a16fig1.gif">Figura 1(a)</a>; e (iii) um tubo desbastado 
+  que foi restaurado, tendo como reparo um compósito de Carbono / Epóxi, com tecido 
+  de fibras AG370-8H (8 Harness Satin) de filamentos AS4, representado pela <a href="/img/revistas/rmat/v11n3/a16fig1.gif">Figura 1(b)</a>.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Conforme observado 
+  através de uma análise de convergência, conduzida no início deste trabalho, 
+  o número de elementos axissimétricos (anéis com um nó em cada extremidade) utilizados 
+  interfere diretamente nos resultados obtidos. Nesta análise, foram utilizadas 
+  malhas uniformes de elementos finitos nas quais o número de elementos variou 
+  de 10 a 120, em incrementos de 10 elementos. Obteve-se convergência a partir 
+  de 100 elementos, ou seja, uma estabilização nos resultados das análises numéricas. 
+  Sendo assim, estabeleceu-se o número de 120 elementos como padrão para representação 
+  dos tubos em todas as simulações numéricas. Cada elemento da malha é um anel 
+  de espessura (t) constante, o qual pode ser discretizado em camadas com propriedades 
+  mecânicas ortotrópicas distintas &#91;3&#93;. Cara nó da malha tem 04 graus de liberdade, 
+  sendo estes os deslocamentos: axiais (u); circunferenciais (v) e radiais (w) 
+  e a rotação meridional.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">O reparo compósito 
+  de Carbono / Epóxi apresenta as seguintes frações volumétricas de fibra e matriz 
+  (resina), respectivamente: v<sub>f</sub> = 50% e v<sub>m</sub> = 50% &#91;2&#93;. O 
+  reparo envolve totalmente a superfície do trecho desbastado, ou seja, é aplicado 
+  ao longo da circunferência completa do tubo (360°). </font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Em todas as simulações 
+  os tubos foram modelados como cilindros bi-engastados nas extremidades (vide 
+  <a href="/img/revistas/rmat/v11n3/a16fig1.gif">Figura 
+  1</a>) e submetidos a pressões de 2, 4, 6, 8 e 10 MPa, com geometria e propriedades 
+  mecânicas listadas na <a href="#tab1">Tabela 1</a> e na <a href="#tab2">Tabela 
+  2</a>, respectivamente.</font></p>
+<p><a name="tab2"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16tab2.gif"></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>2.2&nbsp; Espessura 
+  do Reparo</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Como o objetivo 
+  da utilização do reparo é restabelecer o comportamento mecânico do tubo desbastado, 
+  principalmente no que diz respeito às deformações circunferenciais, de forma 
+  que o tubo reparado nem seja estrangulado nem apresente estufamento, é importante 
+  determinar a espessura de reparo ideal necessária. Inicialmente pelo tubo íntegro. 
+  Devido à pressão interna (P), o raio inicial (R) dos tubos aumenta e esse acréscimo 
+  de raio (<font face="Symbol">D</font>R) é definido como sendo o deslocamento 
+  radial (w = <font face="Symbol">D</font>R). O aumento na circunferência dos 
+  tubos (2.<font face="Symbol">p</font>.<font face="Symbol">D</font>R) em relação 
+  à circunferência inicial (2.<font face="Symbol">p</font>.R) é a deformação circunferencial 
+  (<font face="Symbol">D</font>R/R).</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Para quantificar 
+  o efeito das pressões internas na parede dos tubos, é fundamental a comparação 
+  do aumento da deformação circunferencial do tubo desbastado em relação ao tubo 
+  íntegro nas diversas pressões internas, apresentadas na <a href="#tab3">Tabela 
+  3</a>. Estas deformações foram obtidas utilizando-se o programa de elementos 
+  finitos COMPSHELL &#91;3&#93;. Admitindo que a variação na deformação circunferencial 
+  <b>(<font face="Symbol">D</font>R/R)</b> seja resultado da diminuição da rigidez 
+  na região desbastada, é correto afirmar-se que, garantindo a mesma deformação 
+  ao tubo desbastado que ao tubo íntegro, através da aplicação do reparo, estar-se-á 
+  garantindo a recuperação de sua rigidez. A aplicação do reparo contribuirá na 
+  recuperação, variando sua espessura na região desbastada até que seja observada 
+  a completa restauração da propriedade, através da análise das deformações circunferenciais 
+  no trecho analisado. A espessura a se utilizar pode ser aproximada através das 
+  seguintes relações, detalhadas no conjunto de Equações 1 a 5 apresentado a seguir.</font></p>
+<p><a name="tab3"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16tab3.gif"></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Como o estudo refere-se 
+  ao comportamento elástico do tubo, pode-se empregar a Lei de Hooke para o aço 
+  e para o reparo, ou seja:</font></p>
+<table width="570" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td><img src="/img/revistas/rmat/v11n3/a16fra1.gif"></td>
+    <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">(1) 
+      </font></td>
+  </tr>
+
+</table>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Onde:</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> <font face="Symbol">s</font> 
+  = tensão normal aplicada </font><br>
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Symbol">e</font> 
+  = deformação circunferencial.<br>
+  E = módulo 
+  de elasticidade</font><br>
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><sub>aço</sub></b> 
+  = referente ao tubo de aço íntegro</font><br>
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><sub>rep</sub></b> 
+  = referente ao tubo de aço com reparo</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Isolando e igualando 
+  a deformação circunferencial (i.e. impondo-se que o tubo reparado apresente 
+  a mesma deformação que o íntegro), obtêm-se:</font></p>
+<table width="570" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td><img src="/img/revistas/rmat/v11n3/a16fra2.gif"></td>
+    <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">(2) 
+      </font></td>
+  </tr>
+</table>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Sabe-se que a tensão 
+  circunferencial para tubos de parede fina (D<sub>i</sub>/t &gt; 20), submetidos 
+  a uma pressão interna (P) é dada por:</font></p>
+<table width="570" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td><img src="/img/revistas/rmat/v11n3/a16fra3.gif"></td>
+    <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">(3) 
+      </font></td>
+  </tr>
+</table>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Onde:</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> <font face="Symbol">s</font> 
+  = tensão circunferencial.<br>
+  P = pressão 
+  interna.<br>
+  R = raio 
+  interno.</font><br>
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">t = espessura da 
+  parede.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Substituindo (3) 
+  em (2) tem-se:</font></p>
+<table width="570" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td><img src="/img/revistas/rmat/v11n3/a16fra4.gif"></td>
+    <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">(4) 
+      </font></td>
+  </tr>
+</table>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Como a pressão 
+  interna (P) ao qual o tubo está submetido e o raio interno do tubo (R) são iguais 
+  para o íntegro e o reparado e a espessura retirada do tubo íntegro (t<sub>aço</sub> 
+  = 1mm) é constante, a Equação 4 resume-se a:</font></p>
+<table width="570" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td><img src="/img/revistas/rmat/v11n3/a16fra5.gif"></td>
+    <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">(5) 
+      </font></td>
+  </tr>
+</table>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Aplicando os dados 
+  da <a href="#tab2">Tabela 2</a> à Equação 5, tem-se o valor da espessura do reparo necessária:</font></p>
+<table width="570" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td><img src="/img/revistas/rmat/v11n3/a16fra6.gif"></td>
+    <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">(6) 
+      </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>3 RESULTADOS 
+  OBTIDOS</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Os tubos íntegros, 
+  desbastados e reparados, nas simulações numéricas, foram submetidos a vários 
+  valores de pressão hidrostática interna, desde 2 MPa (cada MPa equivale a aproximadamente 
+  10 atmosferas ou 10 Kgf/cm<sup>2</sup> )até 10 MPa, em incrementos de 2 MPa, 
+  apresentando assim diferentes deslocamentos radiais máximos (w, na região central 
+  dos mesmos) e conseqüentemente, diferentes deformações circunferenciais adimencionais 
+  (<font face="Symbol">D</font>R/R). Os valores positivos de deslocamento radial, 
+  w, indicam que o tubo estufou, ou seja, apresentou um aumento de diâmetro. Para 
+  todas as pressões, de acordo com cálculos baseados na Equação 5 fora utilizada 
+  a espessura do reparo de carbono/epóxi (t<sub>rep</sub>) de 3,05mm. Esses valores 
+  estão listados nas <a href="#tab4">Tabelas 4</a> e <a href="#tab5">5</a>, respectivamente.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Com os valores 
+  de pressão (P) de 2 até 10 MPa e utilizando-se o programa COMPSHELL com número 
+  de elementos na malha N = 120, usando-se os dados das <a href="#tab1">Tabela 1</a> e da <a href="#tab2">Tabela 2</a>, 
+  geraram-se os gráficos de deslocamentos radiais e deformações circunferenciais 
+  que se seguem, apresentados nas <a href="/img/revistas/rmat/v11n3/html/a16fig2.htm">Figuras 
+  2 a 5</a>. O número total de&nbsp; elementos, 
+  N = 120, foi adotado após a realização de uma análise de convergência dos resultados 
+  numéricos &#91;8&#93;.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Nota-se, examinando-se 
+  as <a href="#tab4">Tabelas 4</a> e <a href="#tab5">5</a>, que as diferenças 
+  entre os deslocamentos radiais (w) e as deformações circunferenciais ( e<sub>c</sub> 
+  ) dos tubos íntegro e reparados, na região central dos mesmos, são sempre inferiores 
+  a 1,2%, sugerindo que o reparo efetivamente restitui a rigidez original do tubo 
+  íntegro. Percebe-se também que os tubos desbastados, especificamente, apresentam 
+  deslocamentos radiais e deformações circunferenciais, na região central, aproximadamente 
+  duas vezes maiores em relação às dos tubos íntegros. Como estes valores são 
+  positivos, isto indicam que os trechos desbastados estufam, em relação ao restante 
+  do tubo. Adicionalmente, uma análise das <a href="/img/revistas/rmat/v11n3/html/a16fig2.htm">Figuras 
+  2 a 5</a>, mostra que a tendência 
+  dos tubos reparados, em particular, de sofrer estrangulamento ou estufamento, 
+  na região restaurada com laminado de carbono/epóxi de espessura ideal prevista 
+  pela Equação 5, é praticamente inexistente. Se a Equação 5 não for respeitada, 
+  o trecho reparado estufa, se a espessura do reparo for menor que a ideal; e 
+  é estrangulado de o reparo possuir espessura maior. Isto indica que a metodologia 
+  adotada permite compensar a perda de espessura sofrida na região desbastada, 
+  quando o reparo é dimensionado de acordo com a Equação 5. Estas mesmas figuras 
+  mostram que os tubos desbastados sofrem estufamento localizado nos trechos nos 
+  quais a espessura original é diminuída.</font></p>
+<p><a name="tab4"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16tab4.gif"></p>
+<p align="center">&nbsp;</p>
+<p><a name="tab5"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16tab5.gif"></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Nota-se que há 
+  proporcionalidade entre os valores das ordenadas (<font face="Symbol">D</font>R/R) 
+  nos gráficos apresentados nas <a href="/img/revistas/rmat/v11n3/html/a16fig2.htm">Figuras 
+  2 e 3</a>, correspondentes às pressões de 2 e 10 MPa,&nbsp; respectivamente. 
+  Nesta faixa de pressões, foi verificada uma relação linear entre os aumentos 
+  de diâmetro e os incrementos de pressão. Assim, para os valores de pressão intermediários 
+  de 4, 6 e 8 MPa, os valores de deformações circunferenciais (<font face="Symbol">D</font>R/R) 
+  correspondentes foram proporcionais às pressões.&nbsp; Tal fato também pode 
+  ser confirmado observando-se os valores apresentados na <a href="#tab5">Tabela 
+  5</a>.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Nota-se que há 
+  proporcionalidade entre os valores das ordenadas (<font face="Symbol">D</font>R 
+  = w) nos gráficos apresentados nas <a href="#fig4">Figuras 4</a> e <a href="#fig5">5</a>, 
+  correspondentes às pressões de 2 e 10 MPa,&nbsp; respectivamente. Sendo que, 
+  para os valores de pressão intermediários de 4, 6 e 8 MPa, os valores de&nbsp; 
+  deslocamentos radiais (w) correspondentes foram proporcionais às respectivas 
+  pressões.&nbsp; Tal fato também pode ser confirmado observando-se os valores 
+  apresentados na <a href="#tab4">Tabela 4</a>. Isto indica que o comportamento 
+  dos tubos, nas simulações de pressurização, é do tipo linear e elástico</font></p>
+<p><a name="fig4"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16fig4.gif"></p>
+<p>&nbsp;</p>
+<p><a name="fig5"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16fig5.gif"></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">O tubo de Aço AISI 
+  1020 íntegro apresentava uma massa de 1,98 Kg e uma espessura constante inicial 
+  de 2 mm. No trecho desbastado, de 100 mm de extensão, esta espessura foi reduzida 
+  para 1 mm (diminuição de 50% na parede do cilindro) e, como conseqüência, sua 
+  massa baixou para 1,73 Kg. Sendo que, após o reparo com Carbono/Epóxi com espessura 
+  (t<sub>rep</sub>) de 3,05mm, conforme ilustrado na <a href="#fig6">Figura 6</a>, 
+  e massa de 0,15 Kg, o tubo reparado passou a apresentar uma massa final de 1,88 
+  Kg. Houve então uma <b>redução</b> em relação à massa inicial do tubo íntegro, 
+  ou seja, o tubo reparado é ligeiramente mais leve que o tubo íntegro. Esta redução 
+  de massa deve-se, em parte, ao fato de a densidade do aço ser de <b>7,8 g/cm<sup>3</sup></b>, 
+  enquanto que a do carbono/epóxi ser de apenas <b>1,6 g/cm<sup>3</sup></b>.&nbsp; 
+  Entretanto, uma análise mais aprofundada dos dados da <a href="#tab2">Tabela 
+  2</a>, revela que o carbono/epóxi apresenta um quociente mais elevado da relação 
+  (E/r) entre o módulo de elasticidade (E) e a densidade (r). Trata-se então de 
+  um material estrutural mais eficiente, no que concerne à rigidez específica. 
+  Neste caso, ao se desbastar o tubo, retira-se o aço que tem uma relação (E/r) 
+  de 25,6 e o substitui pelo carbono/epóxi cuja relação (E/r) é de 40,9. Sendo 
+  que, como a rigidez do tubo na região desbastada é restaurada de forma ideal 
+  (i.e. na medida exata, sem tornar a região restaurada excessivamente rígida), 
+  de acordo com a Equação (5), o peso total do tubo reparado fica menor que o 
+  do tubo íntegro.</font></p>
+<p><a name="fig6"></a></p>
+<p>&nbsp;</p>
+<p align="center"><img src="/img/revistas/rmat/v11n3/a16fig6.gif"></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Também é importante 
+  destacar-se que, para realizar um reparo compósito, ao contrário de um reparo 
+  convencional metálico (p.ex. luva ou trecho adicional soldado), não é necessário 
+  interromper-se o fluxo de fluido no interior da tubulação &#91;1&#93;. Isto se deve 
+  ao fato de que, na operação de reparo, a resina epóxi do laminado ainda é moldável 
+  (encontra-se em estado de "gel", no qual as ligações covalentes estão no início 
+  do processo de formação) e ao aderir-se ao trecho defeituoso adapta-se perfeitamente 
+  à superfície do tubo. Neste caso, não é necessário cortar e retirar o trecho 
+  defeituoso e substituí-lo por um novo.</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>4 DISCUSS&Atilde;O 
+  DOS RESULTADOS</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Analisando as <a href="#tab4">Tabelas 
+  4</a> e <a href="#tab5">5</a> observa-se que, para o tubo <b>reparado</b> com 
+  tecido de fibra de carbono e resina epóxi, o deslocamento radial máximo (w) 
+  e a deformação circunferencial máxima aproximam-se em mais de <b>98%</b> dos 
+  resultados apresentados pelo tubo <b>íntegro</b>. Isto é uma indicação de que 
+  a rigidez estrutural do tubo de aço, no trecho desbastado, foi praticamente 
+  restituída ao valor inicial dos tubos íntegros.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Os gráficos apresentados 
+  nas <a href="/img/revistas/rmat/v11n3/html/a16fig2.htm">Figuras 
+  2 a 5</a> demonstram que a recuperação do comportamento do tubo reparado, 
+  em relação ao desbastado, é plenamente satisfatória. Os deslocamentos radiais 
+  do tubo reparado se aproximam muito do comportamento desejado do tubo íntegro, 
+  em resposta às pressões internas ao qual está submetido. Em particular, enquanto 
+  que para o tubo desbastado há um claro "estufamento" do tubo na região desbastada 
+  (no trecho de 150 a 250 mm a partir das extremidades), para o tubo reparado 
+  com carbono/epóxi este "estufamento" praticamente desaparece. No trecho desbastado, 
+  em todas as pressões, o deslocamento radial máximo é cerca de duas vezes maior 
+  em relação ao apresentado pelo tubo íntegro. Porém, ao se aplicar o reparo, 
+  o "estufamento" (aumento localizado de raio) praticamente desaparece. Adicionalmente, 
+  o reparo também não provoca o estrangulamento do tubo, sugerindo que a espessura 
+  do laminado de carbono/epóxi, de 3,05 mm, é praticamente a ideal. Estudos anteriores 
+  indicam que se a espessura do reparo for excessiva o tubo sofre estrangulamento 
+  na região restaurada.&nbsp; </font></p>
+<p>&nbsp;</p>
+
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>5 CONCLUS&Otilde;ES</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Os resultados obtidos 
+  das simulações numéricas do tubo de aço, desbastado de 1 mm (50% de sua espessura 
+  original) e reparado, em relação às do íntegro, são promissoras. Estas indicam 
+  que, com camadas circunferenciais de material compósito carbono/epóxi, totalizando 
+  3,05mm, é possível restabelecer-se a rigidez perdida quando do desbaste. Adicionalmente, 
+  o tubo reparado fica ligeiramente mais leve que o íntegro. </font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Percebe-se que 
+  a aproximação feita através das equações (1) a (5) são condizentes com o objetivo 
+  inicial de restaurar a rigidez, uma vez que a rigidez do tubo reparado, de acordo 
+  com as simulações numéricas, apresentou uma recuperação média, em termos de 
+  deformação circunferencial, de 98% em relação ao tubo íntegro. Pode-se chegar 
+  a essa conclusão, pois o comportamento do tubo em relação ao deslocamento radial 
+  e à conseqüente deformação circunferencial, está diretamente ligado à sua rigidez.</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>6 AGRADECIMENTOS</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Ao CNPq e à Eletronorte, 
+  pelo investimento realizado na execução deste estudo.</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b>7 BIBLIOGRAFIA</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;1&#93; TOUTANJI, H., 
+  DEMPSEY, S., "Stress Modeling of Pipelines Strengthened with Advanced Composite 
+  Materials", <i>Thin Walled Structures</i>, v. 39, n. 2, pp. 153–165, 2001.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;2&#93; MAIA, G.C., 
+  <i> Comportamento Elástico de Cilindros Metálicos com e sem Reparo Circunferencial 
+  de Carbono/epóxi</i>, Dissertação de M.Sc. em Engenharia Mecânica, UnB, ENM, 
+  Brasília, Brasil, 2003.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;3&#93; LEVY NETO, 
+  F., <i>The Behaviour of Externally Pressurised Composite Domes</i>, Ph.D. Dissertation 
+  Thesis, University of Liverpool, Liverpool, UK, 1991.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;4&#93; LEVY NETO, 
+  F., FERREIRA, J.L., DE ALMEIDA E MAIA, G.C., "Stress Analysis of Internally 
+  Pressurized Aluminuim Cylinders Repaired with Carbon/epoxy Hoop Stripes", In: 
+  <i>Anais do VII COTEQ – Conferência sobre Tecnologia de Equipamentos</i>, Florianópolis, 
+  09-12, Setembro, 2003.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;5&#93; GIBSON, R.F., 
+  <i>Principles of Composite Material Mechanics</i>, New York, Mc-Graw Hill, 1994.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;6&#93; SILVA TELLES, 
+  P.C., <i> Tubulações Industriais: Materiais, Projeto e Montagem</i>, Rio de 
+  Janeiro, Editora LTC, 2003.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;7&#93; MACHADO, A. 
+  de P., <i> Reforço de Estruturas de Concreto Armado com Fibras de Carbono</i>, 
+  São Paulo, Editora Pini, 2002.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">&#91;8&#93; THOMAZI, C.T.C.L., 
+  <i> Comportamento Mecânico de Dutos Metálicos Reparados com Materiais Compósitos</i>, 
+  Dissertação de M.Sc. em Engenharia Mecânica, UnB, ENM, Brasília, Brasil, 2006. 
+  </font></p>
+</body>
+</html>

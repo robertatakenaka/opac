@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Contexto int. - </title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0102-8529&lng=es&nrm=iso"><img
+    src="/img/revistas/cint/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0102-8529 <!-- #BeginEditable "impressa" --><i>versión 
+        impresa</i><!-- #EndEditable --><br>
+        ISSN 1982-0240 <!-- #BeginEditable "online" --><i>versión impresa</i><!-- #EndEditable --></p>
+      </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> <a name="end"></a> 
+<p align="center" class="rodapep">Rua Marques de S&atilde;o Vicente, 225 - Casa 
+  20 - G&aacute;vea<br>
+  222453-900, Rio de Janeiro RJ Brasil<br>
+  Tel.: +55 21 3527-1559<br>
+  Fax: +55 21 3527-1560</p>
+<p align="center"><a href="mailto:npp@iri.puc-rio.br"><img
+src="/img/revistas/e-mailt.gif" border="0"></a><br>
+  <a href="mailto:npp@puc-rio.br">npp@puc-rio.br</a></p>
+</body>
+</html>

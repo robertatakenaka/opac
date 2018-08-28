@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Atualizar nas p&aacute;ginas!</title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style><body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="Atualizar nas páginas!"><img
+    src="Atualizar nas páginas!" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 1679-9275<!-- #BeginEditable "impressa" --><i> 
+        versión impresa (Atualizar nas p&aacute;ginas!)</i><!-- #EndEditable --> 
+        <br>
+        ISSN 1807-8621<!-- #BeginEditable "on-line" --><i> versión on-line (Atualizar nas p&aacute;ginas!)</i><!-- #EndEditable --> 
+      </p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}<br>
+          Atualizar na páginas!</p>
+      </blockquote>
+      <ul>
+        <li>{Link}<br>
+          Atualizar nas páginas!</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<br>
+Atualizar nas páginas!<br>
+<!-- #EndEditable --> 
+<p><a name="end"></a> 
+</p>
+<p align="center" class="rodapep">Av. Colombo, 5790, bloco 40<br>
+  CEP: 87020-900<br>
+  Maring&aacute; Paran&aacute; Brasil<br>
+  Tel.:(44) 3011-4253<br>
+  Fax:(44) 3011-1392</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:actaagron@uem.br">actaagron@uem.br</a></p>
+</body>
+</html>

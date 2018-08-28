@@ -1,0 +1,40 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Rev. Adm. Mackenzie - </title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=1415-4757&lng=en&nrm=iso"><img
+    src="/img/revistas/ram/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0102-6720<!-- #BeginEditable "impressa" --> 
+        <i>printed version</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> <a name="end"></a> 
+<p align="center" class="rodapep"> Av. Brigadeiro Luiz Antonio, 278<br>
+  6&deg; andar - Sala 10 e 11<br>
+  Bela Vista<br>
+  01318-901 S&atilde;o Paulo SP Brasil<br>
+  Tel.: +55 11-3288-8174 / 3289-0741<br>
+</p>
+<p align="center"><a href="mailto:"><img src="/img/revistas/e-mailt.gif" border="0"></a><br>
+  <a href="mailto:cbcd@cbcd.org.br">cbcd@cbcd.org.br</a></p>
+</body>
+</html>

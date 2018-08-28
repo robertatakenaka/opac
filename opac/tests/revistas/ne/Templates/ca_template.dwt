@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>SBA Controle &amp; Automa&ccedil;&atilde;o - </title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0103-1759&lng=es&nrm=iso"><img
+    src="/img/revistas/ca/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0103-1759 <!-- #BeginEditable "impressa" --><i> 
+        versión impresa</i><!-- #EndEditable --> </p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a> 
+<p align="center" class="rodape">© 2002-2007 Sociedade Brasileira de Autom&aacute;tica</p>
+<p align="center" class="rodapep">Caixa Postal 6017<br>
+  12228-900 S&atilde;o Jos&eacute; dos Campos SP Brasil<br>
+  Fax: +55 12 3947 5878<br>
+  Tel.: +55 12 3947 5895</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:revista_sba@fee.unicamp.br">revista_sba@fee.unicamp.br</a></p>
+</body>
+</html>

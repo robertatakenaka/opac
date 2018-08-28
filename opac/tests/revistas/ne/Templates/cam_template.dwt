@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Comp. Appl. Math. - </title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table border="0" width="100%">
+  <tr> 
+    <td valign="top" width="30%"> 
+      <p align="center"><!-- #BeginEditable "Link" --><a href="/scielo.php?script=sci_serial&lng=en&pid=0101-8205&nrm=iso"><img src="/img/revistas/cam/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0101-8205<i> <!-- #BeginEditable "Impresso" -->printed 
+        version <!-- #EndEditable --></i></p>
+    </td>
+    <td valign="top" align="left" width="70%"> 
+      <blockquote><!-- #BeginEditable "topo" --> 
+        <blockquote> 
+          <p align="left" class="titulo">{Topo}</p>
+        </blockquote>
+        <ul>
+          <li>{Links}</li>
+        </ul>
+        <!-- #EndEditable --> </blockquote>
+    </td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" --> {Texto} <!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a> 
+<p align="center" class="rodape">Computational &amp; Applied Mathematics<br>
+ICMC/USP &ndash; SBMAC</p>
+<p align="center" class="rodapep"> Av. do Trabalhador S&atilde;o Carlense, 400<br>
+  Caixa Postal 668 13560-970 &ndash; S&atilde;o Carlos &ndash; SP- Brazil<br>
+  Phone: +55 16 3374.3067 / 3373.8120<br>
+  Fax: +55 16 3374.3067<br>
+</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"></p>
+<p align="center">  <a href="mailto: sbmac@icmc.usp.br">sbmac@icmc.usp.br</a></p>
+</body>
+</html>

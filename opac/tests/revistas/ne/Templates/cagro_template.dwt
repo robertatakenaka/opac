@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Ci&ecirc;nc. agrotec. - </title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=1413-7054&lng=es&nrm=iso"><img
+    src="/img/revistas/cagro/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 1413-7054 <!-- #BeginEditable "impressa" --><i> 
+        versión impresa</i><!-- #EndEditable --> <br>
+        ISSN 1981-1829 <!-- #BeginEditable "on-line" --><i> versión on-line</i><!-- #EndEditable --> 
+      </p>
+      </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> <a name="end"></a> 
+<p align="center" class="rodape">&nbsp;</p>
+<p align="center" class="rodapep">Caixa Postal 3037, Campus Hist&oacute;rico<br>
+  Caixa Postal<br>
+  37200-000 Lavras - MG - Brasil<br>
+  Tel.: +55 35 3829-1115<br>
+  Fax: +55 35 3829-1532<br>
+  <br>
+</p>
+<p align="center"><a href="mailto:editora@ufla.br"><img
+src="/img/revistas/e-mailt.gif" border="0"></a><br>
+  <br>
+  <a href="mailto:editora@ufla.br">editora@ufla.br</a></p>
+</body>
+</html>

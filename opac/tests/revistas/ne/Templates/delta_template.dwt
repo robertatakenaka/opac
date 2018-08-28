@@ -1,0 +1,43 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>DELTA - </title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><a href="/scielo.php?script=sci_serial&pid=0004-2730&lng=es&nrm=iso"><img
+    src="/img/revistas/delta/plogo.gif" border="0"></a></p>
+      <p align="center" class="issn">ISSN 0102-4450 <!-- #BeginEditable "impresso" --><i>vers&atilde;o 
+        impressa</i><!-- #EndEditable --><br>
+        ISSN 1678-460X <!-- #BeginEditable "online" --><i>vers&atilde;o online</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade size="2">
+<a name="end"></a> 
+<p align="center" class="rodape">© 2001-2007 DELTA</p>
+<p align="center" class="rodapep">Programa de Pós-Graduação em Lingüística Aplicada 
+  e Estudos da Linguagem (LAEL)<br>
+  Pontifícia Universidade Católica de São Paulo (PUC-SP)<br>
+  Rua Monte Alegre, 984<br>
+  05014&#150;001, São Paulo SP - Brazil<br>
+  Tel.: +55 11 3864-4409<br>
+  Fax: +55 11 3862-5840</p>
+<p align="center"><a href="mailto:delta@exatas.pucsp.br"><img
+src="/img/revistas/e-mailt.gif" border="0"></a><br>
+  <a href="mailto:delta@exatas.pucsp.br">delta@exatas.pucsp.br</a></p>
+</body>
+</html>

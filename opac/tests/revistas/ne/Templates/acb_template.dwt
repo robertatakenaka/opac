@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<LINK rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<TITLE>Acta Cir. Bras. - </TITLE>
+<!-- #EndEditable --> 
+</HEAD>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<BODY>
+<TABLE border="0" width="100%"> <TR> <TD valign="top" width="30%"> <P align="center"><!-- #BeginEditable "Link" --><A href="/scielo.php?script=sci_serial&lng=pt&pid=0102-8650&nrm=iso"><IMG src="/img/revistas/acb/plogo.gif" border="0"></A><!-- #EndEditable --></P>
+      <P align="center" class="issn">ISSN 0102-8650 <I><!-- #BeginEditable "Impresso" -->versi&oacute;n 
+        impresa<!-- #EndEditable --></I><BR>
+        ISSN <B>1678-2674</B> <I><!-- #BeginEditable "Online" -->versi&oacute;n 
+        online<!-- #EndEditable --></I></P></TD><TD valign="top" align="left" width="70%"> 
+<BLOCKQUOTE><!-- #BeginEditable "topo" --> <BLOCKQUOTE> <P align="left" class="titulo">{Topo}</P></BLOCKQUOTE><UL> 
+<LI>{Links}</LI></UL><!-- #EndEditable --> </BLOCKQUOTE></TD></TR> </TABLE>
+<!-- #BeginEditable "texto" --> {Texto}<!-- #EndEditable -->
+<P align="center" class="rodapep">Al. Rio Claro, 179/141 - 14&ordm; and.<BR>
+   01332-010&nbsp;São Paulo SP Brasil<BR>
+  Tel./Fax: +55 11 3287-8814</P>
+<P align="center"><A href="mailto:sgolden@terra.com.br"><IMG
+src="/img/revistas/e-mailt.gif" border="0"></A><BR> <A href="mailto:sgolden@terra.com.br">sgolden@terra.com.br</A></P>
+</BODY>
+</HTML>

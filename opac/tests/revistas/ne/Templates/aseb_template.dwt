@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Anais da SEB</title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0301-8059&lng=es&nrm=iso"><img
+    src="/img/revistas/aseb/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0301-8059 <!-- #BeginEditable "impressa" --><i> 
+        versión impresa</i><!-- #EndEditable --> </p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a> 
+<p align="center" class="rodape">© 2005 Sociedade Entomol&oacute;gica do Brasil</p>
+<p align="center" class="rodapep">Embrapa Soja, C postal 231<br>
+  86001-970 -Londrina - PR<br>
+  Tel.: +55 43 3371-6210<br>
+  Fax.: +55 43 3371-6100</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:moscardi@cnpso.embrapa.br">moscardi@cnpso.embrapa.br</a> </p>
+</body>
+</html>

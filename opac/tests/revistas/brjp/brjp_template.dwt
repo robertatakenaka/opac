@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Br J Pain - </title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0101-3262&lng=es&nrm=iso"><img
+    src="/img/revistas/brjp/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 2595-0118 <!-- #BeginEditable "impressa" --><i> 
+        versión impresa</i><!-- #EndEditable --> <br>
+        ISSN 2595-3192 <!-- #BeginEditable "Online" --><i>versi&oacute;n online</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a> 
+<p align="center" class="rodapep">Av. Conselheiro Rodrigues Alves, 937 Cj2<br>
+ Vila Mariana<br>
+04014-012 S&atilde;o Paulo SP Brasil<br>
+Tel.: (55) 11 5904-2881/3959
+<br></p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:dor@dor.org.br">dor@dor.org.br
+</a></a></p>
+</body>
+</html>

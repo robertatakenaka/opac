@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Braz. arch. biol. technol.</title>
+<!-- #EndEditable --> 
+</head>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=1516-8913&lng=es&nrm=iso"><img
+    src="/img/revistas/babt/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 1516-8913 <!-- #BeginEditable "impressa" --><i> 
+        printed version</i><!-- #EndEditable --> <br>
+        ISSN 1678-4324 <!-- #BeginEditable "Online" --><i>online version</i><!-- #EndEditable --> 
+      </p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --> 
+<hr noshade>
+<a name="end"></a> 
+<p align="center" class="rodape">© 2001-2007 Tecpar</p>
+<p align="center" class="rodapep">R. Prof. Algacyr Munhoz Mader, 3775 - CIC <br>
+  81350-010 Curitiba PR Brasil<br>
+  Tel.: +55 41 3316-3012 / 3316-3052<br>
+  Fax: +55 41 247-0844</p>
+<p align="center"><img
+src="/img/revistas/e-mailt.gif" border="0"><br>
+  <a href="mailto:niet@tecpar.br">niet@tecpar.br</a></p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="/css/revistas.css">
+<!-- #BeginEditable "doctitle" --> 
+<title>Cad. Pesqui. - </title>
+<!-- #EndEditable --> 
+</head>
+<style>
+.rodape {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #666666; text-align: center; font-weight: normal; font-style: normal}
+</style>
+<body>
+<table width="100%" border="0">
+  <tr> 
+    <td width="30%" align="center" valign="top"> 
+      <p><!-- #BeginEditable "link" --><a href="/scielo.php?script=sci_serial&pid=0100-1574&lng=es&nrm=iso"><img
+    src="/img/revistas/cp/plogo.gif" border="0"></a><!-- #EndEditable --></p>
+      <p align="center" class="issn">ISSN 0100-1574 <!-- #BeginEditable "impressa" --><i>versi&oacute;n 
+        impresa</i><!-- #EndEditable --> </p>
+        <p align="center" class="issn">ISSN 1980-5314 <!-- #BeginEditable "cp" --><i>CP</i><!-- #EndEditable --></p>
+    </td>
+    <td width="70%" valign="top" align="left"><!-- #BeginEditable "topo" --> 
+      <blockquote> 
+        <p class="titulo">{Topo}</p>
+      </blockquote>
+      <ul>
+        <li>{Link}</li>
+      </ul>
+      <!-- #EndEditable --></td>
+  </tr>
+</table>
+<!-- #BeginEditable "texto" -->{texto}<!-- #EndEditable --><a name="end"></a> 
+<p align="center" class="rodape">&nbsp;</p>
+<p align="center" class="rodapep">Av. Prof. Francisco Morato, 1565<br>
+  O5513-900 S&atilde;o Paulo SP Brasil<br>
+  Tel: +55 11 3723-3000<br>
+  Fax: +55 11 3721-1059</p>
+<p align="center"><a href="cadpesq@fcc.org.br"><img
+src="/img/revistas/e-mailt.gif" border="0"></a><br>
+<a href="mailto:cadpesq@fcc.org.br">cadpesq@fcc.org.br</a></p>
+</body>
+</html>
