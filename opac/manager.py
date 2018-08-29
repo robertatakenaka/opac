@@ -8,8 +8,6 @@ import unittest
 import logging
 from uuid import uuid4
 
-from slugify import slugify
-
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WEBAPP_PATH = os.path.abspath(os.path.join(HERE, 'webapp'))
@@ -36,7 +34,9 @@ else:
 from webapp import create_app, dbsql, dbmongo, mail, cache  # noqa
 from opac_schema.v1.models import Collection, Sponsor, Journal, Issue, Article  # noqa
 from webapp import controllers  # noqa
-from webapp.utils import reset_db, create_db_tables, create_user, create_image, create_page, extract_images, open_file, get_new_page  # noqa
+from webapp.utils import reset_db, create_db_tables, create_user, create_image, create_page # noqa
+from webapp.utils.journal_static_page import get_new_journal_page, get_journal_page_img_paths # noqa
+
 from flask_script import Manager, Shell  # noqa
 from flask_migrate import Migrate, MigrateCommand  # noqa
 from webapp.admin.forms import EmailForm  # noqa
@@ -376,54 +376,29 @@ def populate_journal_pages(
                   }
     j_total = len(acron_list)
     done = 0
+
     for j, acron in enumerate(sorted(acron_list)):
-        journal_pages_path = os.path.join(pages_source_path, acron)
         print('{}/{} {}'.format(j+1, j_total, acron))
         for lang, files in file_names.items():
-
-            content, images_in_file = get_new_page(journal_pages_path, files)
-
+            journal_pages_path = os.path.join(pages_source_path, acron)
+            content, images_in_file = get_new_journal_page(
+                                                    journal_pages_path, files)
             if content:
-                new_images = []
-                names_list = []
-                for img_in_file in images_in_file:
-                    img_basename = os.path.basename(img_in_file)
-                    name, ext = os.path.splitext(img_basename)
-                    names_list.append(name)
-
-                    img_src_path = None
-                    img_path = os.path.join(journal_pages_path, img_basename)
-                    if os.path.isfile(img_path):
-                        img_src_path = img_path
-                    elif '/img/revistas/' in img_in_file:
-                        img_src_path = os.path.join(
-                            images_source_path,
-                            img_in_file[img_in_file.find('/img/revistas/') +
-                                        len('/img/revistas/'):])
-                    try:
-                        # Verifica se a imagem existe
-                        open_file(img_src_path, mode='r')
-                    except IOError as e:
-                        logging.error(
-                            u'%s (corresponding to %s)' % (e, img_in_file))
-                    else:
-                        new_images.append((img_src_path, name, ext))
-
-                for img_src_path, img_name, ext in list(set(new_images)):
-                    alt_name = slugify(img_name)
-                    if alt_name not in names_list:
-                        img_name = alt_name
-
-                    img_dest_name = '%s_%s%s' % (acron, img_name, ext)
-                    img = create_image(
-                        img_src_path, img_dest_name, thumbnail=True)
-                    content = content.replace(
-                        img_in_file, img.get_absolute_url)
-                done += 1
-                create_page(
+                journal_img_paths = get_journal_page_img_paths(
+                                                            acron,
+                                                            images_in_file,
+                                                            pages_source_path,
+                                                            images_source_path)
+                for img_in_file, img_src, img_dest in journal_img_paths:
+                    img = create_image(img_src, img_dest, thumbnail=True)
+                    content = content.replace(img_in_file,
+                                              img.get_absolute_url)
+                return create_page(
                     'Página secundária %s (%s)' % (acron.upper(), lang),
                     lang, content, acron,
                     'Página secundária do periódico %s' % acron)
+                done += 1
+
     print('Páginas: {}\nPeriódicos: {}'.format(done, j_total))
 
 

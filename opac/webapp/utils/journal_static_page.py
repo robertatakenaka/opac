@@ -4,6 +4,7 @@ import os
 import logging
 
 from bs4 import BeautifulSoup, Comment, element
+from slugify import slugify
 
 
 logger = logging.getLogger(__name__)
@@ -12,6 +13,82 @@ logger.setLevel(logging.DEBUG)
 fh = logging.FileHandler('journal_pages.log', mode='w')
 fh.setLevel(logging.DEBUG)
 logger.addHandler(fh)
+
+
+def get_new_journal_page(journal_pages_path, files):
+    """
+    Extract the header and the footer of the page
+    Insert the anchor based on filename
+    """
+    content = []
+    img_paths = []
+    unavailable_message = None
+    for file in files:
+        file_path = os.path.join(journal_pages_path, file)
+        page = JournalStaticPageFile(file_path)
+        if page.unavailable_message:
+            content.append(page.anchor)
+            unavailable_message = page.unavailable_message
+        else:
+            content.append(page.body)
+            img_paths.extend(page.img_paths)
+    if unavailable_message is not None:
+        content.append(unavailable_message)
+    return '\n'.join(content), sorted(list(set(img_paths)))
+
+
+def find_journal_page_img_file(img_in_file, acron, revistas_path,
+                               img_revistas_path):
+    img_basename = os.path.basename(img_in_file)
+    revistas_acron_path = os.path.join(revistas_path, acron)
+    location = os.path.join(revistas_acron_path, img_basename)
+    if not os.path.isfile(location):
+        if '/img/revistas/' in img_in_file:
+            location = os.path.join(
+                img_revistas_path,
+                img_in_file[img_in_file.find('/img/revistas/') +
+                            len('/img/revistas/'):])
+        elif '/revistas/' in img_in_file:
+            location = os.path.join(
+                revistas_path,
+                img_in_file[img_in_file.find('/revistas/')+len('/revistas/'):])
+    try:
+        # Verifica se a imagem existe
+        open(location)
+    except IOError as e:
+        logging.error(
+            u'%s (corresponding to %s)' % (e, img_in_file))
+    else:
+        return location
+
+
+def img_new_name(img_location, used_names):
+    img_basename = os.path.basename(img_location)
+    img_name, img_ext = os.path.splitext(img_basename)
+    if img_location is not None:
+        alt_name = slugify(img_name) + img_ext
+        if alt_name not in used_names:
+            new_img_name = alt_name
+        else:
+            new_img_name = img_basename
+        used_names.append(new_img_name)
+        return new_img_name
+
+
+def get_journal_page_img_paths(acron, images_in_file, revistas_path,
+                            img_revistas_path):
+    used_names = []
+    images = []
+    for img_in_file in images_in_file:
+        img_location = find_journal_page_img_file(img_in_file,
+                                                      acron,
+                                                      revistas_path,
+                                                      img_revistas_path)
+        if img_location is not None:
+            new_img_name = img_new_name(img_location, used_names)
+            img_dest_name = '%s_%s' % (acron, new_img_name)
+            images.append((img_in_file, img_location, img_dest_name))
+    return images
 
 
 class JournalStaticPage(object):
@@ -102,10 +179,12 @@ class JournalStaticPageFile(object):
 
     def get_tree(self):
         for parser in ['lxml', 'html.parser']:
-            self.tree = BeautifulSoup(self.file_content, parser)
-            if self.middle_end_insertion_position is None or \
-               self.middle_begin_insertion_position is None:
-                self._info('FAILED {}'.format(parser))
+            if parser is not None:
+                self.tree = BeautifulSoup(self.file_content, parser)
+            if self.middle_end_insertion_position is None:
+                self._info('Not found: end. FAILED {}'.format(parser))
+            elif self.middle_begin_insertion_position is None:
+                self._info('Not found: begin. FAILED {}'.format(parser))
             else:
                 break
 
@@ -280,9 +359,13 @@ class JournalStaticPageFile(object):
             p_items = self.sorted_by_relevance
             msg = self._check_unavailable_message(p_items[0][1])
             if msg is not None:
-                if msg.count('\n') < 4:
+                self._info(len(p_items[0][1]))
+                self._info(p_items[0][1][:200])
+                if len(p_items[0][1]) < 200:
                     self._unavailable_message = '<p>{}</p>'.format(msg)
-                    self._info(p_items[0][1])
+                    self._info(self._unavailable_message)
+                else:
+                    self._info('IGNORED')
 
     @property
     def sorted_by_relevance(self):
@@ -301,7 +384,7 @@ class JournalStaticPageFile(object):
     @property
     def middle_items(self):
         if not hasattr(self, '_middle_items'):
-            self._middle_items = [tostring(item)
+            self._middle_items = [child_tostring(item)
                                   for item in self.middle_children]
         return self._middle_items
 
@@ -329,9 +412,32 @@ class JournalStaticPageFile(object):
         return _img_paths
 
     @property
+    def alternative_middle_text(self):
+        middle = self.file_content
+        if '</table>' in middle:
+            middle = middle[middle.find('</table>')+len('</table>'):]
+        if 'Home' in middle:
+            middle = middle[:middle.rfind('Home')]
+            middle = middle[:middle.rfind('<p')]
+        elif 'Volver' in middle:
+            middle = middle[:middle.rfind('Volver')]
+            middle = middle[:middle.rfind('<p')]
+        elif 'Voltar' in middle:
+            middle = middle[:middle.rfind('Voltar')]
+            middle = middle[:middle.rfind('<p')]
+        if '</body>' in middle:
+            middle = middle[:middle.rfind('</body>')]
+        return middle
+
+    @property
     def body(self):
+        if self.p_middle_end is None:
+            middle = self.alternative_middle_text
+        else:
+            middle = self.middle_text
+
         return '<!-- inicio {} -->'.format(self.filename) + \
-               self.anchor + self.middle_text + '<hr noshade="" size="1"/>' + \
+               self.anchor + middle + '<hr noshade="" size="1"/>' + \
                '<!-- fim {} -->'.format(self.filename)
 
 
@@ -360,7 +466,7 @@ def remove_exceding_space_chars(content):
     return ' '.join([p for p in parts if len(p) > 0])
 
 
-def tostring(child):
+def child_tostring(child):
     if isinstance(child, element.Tag):
         return child.text
     elif isinstance(child, element.NavigableString):
@@ -373,3 +479,4 @@ def wrap(child, new_tag):
             child.wrap(new_tag)
     elif isinstance(child, element.NavigableString):
         return child.wrap(new_tag)
+
