@@ -5,20 +5,15 @@ from .base import BaseTestCase
 
 from . import utils
 
-from webapp.utils.journal_static_page import JournalStaticPageFile, get_new_journal_page, get_journal_page_img_paths
+from webapp.utils.journal_static_page import (
+    JournalStaticPageFile,
+    JournalPagesSourceFiles,
+    PAGE_NAMES,
+    PAGE_NAMES_BY_LANG,
+)
 
 
 REVISTAS_PATH = 'opac/tests/fixtures/pages/revistas'
-file_names = {'en': ['iaboutj.htm',
-                     'iedboard.htm',
-                     'iinstruc.htm'],
-              'pt_BR': ['paboutj.htm',
-                        'pedboard.htm',
-                        'pinstruc.htm'],
-              'es': ['eaboutj.htm',
-                     'eedboard.htm',
-                     'einstruc.htm'],
-              }
 IMG_REVISTAS_PATH = 'opac/tests/fixtures/pages/img_revistas'
 
 
@@ -32,10 +27,9 @@ class UtilsJournalPagesTestCase(BaseTestCase):
                     '/img/revistas/rbep/Logotipo Financiador 3 -PAEP.jpg',
                     '/img/revistas/rbep/Logotipo Instituição Mantenedora.jpg',
                     ]
-        journal_pages_path = os.path.join(REVISTAS_PATH, 'rbep')
         files = ['paboutj.htm', 'pedboard.htm', 'pinstruc.htm']
-        content, images_in_file = get_new_journal_page(
-                                            journal_pages_path, files)
+        src = JournalPagesSourceFiles(REVISTAS_PATH, IMG_REVISTAS_PATH, 'rbep')
+        content, images_in_file = src.get_new_journal_page(files)
         self.assertEqual(expected, images_in_file)
 
     def test_rbep_get_journal_page_img_paths(self):
@@ -85,82 +79,8 @@ class UtilsJournalPagesTestCase(BaseTestCase):
                       )
                      ]
         expected = sorted(expected)
-        journal_img_paths = get_journal_page_img_paths(
-                                'rbep',
-                                images_in_file,
-                                REVISTAS_PATH,
-                                IMG_REVISTAS_PATH
-                                )
-        for expected_item, img_path in zip(expected, journal_img_paths):
-            self.assertEqual(expected_item, img_path)
-
-    def test_aa_get_new_journal_page(self):
-        expected = [
-                    '/img/revistas/rbep/CNPq logo.gif',
-                    '/img/revistas/rbep/Logotipo Financiador 1 - FACED.jpg',
-                    '/img/revistas/rbep/Logotipo Financiador 2 - PROPESQ.jpg',
-                    '/img/revistas/rbep/Logotipo Financiador 3 -PAEP.jpg',
-                    '/img/revistas/rbep/Logotipo Instituição Mantenedora.jpg',
-                    ]
-        journal_pages_path = os.path.join(REVISTAS_PATH, 'rbep')
-        files = ['paboutj.htm', 'pedboard.htm', 'pinstruc.htm']
-        content, images_in_file = get_new_journal_page(
-                                            journal_pages_path, files)
-        self.assertEqual(expected, images_in_file)
-
-    def test_aa_get_journal_page_img_paths(self):
-        PATH = '/img/revistas/'
-        images_in_file = [
-                    PATH+'rbep/CNPq logo.gif',
-                    PATH+'rbep/Logotipo Financiador 1 - FACED.jpg',
-                    PATH+'rbep/Logotipo Financiador 2 - PROPESQ.jpg',
-                    PATH+'rbep/Logotipo Financiador 3 -PAEP.jpg',
-                    PATH+'rbep/Logotipo Instituição Mantenedora.jpg',
-                    ]
-
-        expected = []
-        expected += [(PATH+'rbep/CNPq logo.gif',
-                      os.path.join(
-                            IMG_REVISTAS_PATH,
-                            'rbep/CNPq logo.gif'),
-                      'rbep_cnpq-logo.gif'
-                      )
-                     ]
-        expected += [(PATH+'rbep/Logotipo Financiador 1 - FACED.jpg',
-                      os.path.join(
-                            IMG_REVISTAS_PATH,
-                            'rbep/Logotipo Financiador 1 - FACED.jpg'),
-                      'rbep_logotipo-financiador-1-faced.jpg'
-                      )
-                     ]
-        expected += [(PATH+'rbep/Logotipo Financiador 2 - PROPESQ.jpg',
-                      os.path.join(
-                            IMG_REVISTAS_PATH,
-                            'rbep/Logotipo Financiador 2 - PROPESQ.jpg'),
-                      'rbep_logotipo-financiador-2-propesq.jpg'
-                      )
-                     ]
-        expected += [(PATH+'rbep/Logotipo Financiador 3 -PAEP.jpg',
-                      os.path.join(
-                            IMG_REVISTAS_PATH,
-                            'rbep/Logotipo Financiador 3 -PAEP.jpg'),
-                      'rbep_logotipo-financiador-3-paep.jpg'
-                      )
-                     ]
-        expected += [(PATH+'rbep/Logotipo Instituição Mantenedora.jpg',
-                      os.path.join(
-                            IMG_REVISTAS_PATH,
-                            'rbep/Logotipo Instituição Mantenedora.jpg'),
-                      'rbep_logotipo-instituicao-mantenedora.jpg'
-                      )
-                     ]
-        expected = sorted(expected)
-        journal_img_paths = get_journal_page_img_paths(
-                                'rbep',
-                                images_in_file,
-                                REVISTAS_PATH,
-                                IMG_REVISTAS_PATH
-                                )
+        src = JournalPagesSourceFiles(REVISTAS_PATH, IMG_REVISTAS_PATH, 'rbep')
+        journal_img_paths = src.get_journal_page_img_paths(images_in_file)
         for expected_item, img_path in zip(expected, journal_img_paths):
             self.assertEqual(expected_item, img_path)
 
@@ -168,7 +88,9 @@ class UtilsJournalPagesTestCase(BaseTestCase):
 class JournalStaticPageTestCase(BaseTestCase):
 
     def html_file(self, name):
-        return os.path.join(REVISTAS_PATH, name.replace('_', '/')+'.htm')
+        f = os.path.join(REVISTAS_PATH, name.replace('_', '/')+'.htm')
+        if os.path.isfile(f):
+            return f
 
     def test_insert_bold_to_p_subtitulo_aa_eedboard(self):
         jspf = JournalStaticPageFile(self.html_file('aa_eedboard'))
@@ -263,6 +185,7 @@ class JournalStaticPageTestCase(BaseTestCase):
         self.assertFalse('"middle_end"' in jspf.body_content)
         jspf.insert_middle_end()
         self.assertTrue('"middle_end"' in jspf.body_content)
+        self.assertTrue(jspf.p_middle_end is not None)
 
     def test_insert_middle_end_aa_eedboard(self):
         jspf = JournalStaticPageFile(self.html_file('aa_eedboard'))
@@ -271,6 +194,7 @@ class JournalStaticPageTestCase(BaseTestCase):
         self.assertFalse('"middle_end"' in jspf.body_content)
         jspf.insert_middle_end()
         self.assertTrue('"middle_end"' in jspf.body_content)
+        self.assertTrue(jspf.p_middle_end is not None)
 
     def test_insert_middle_end_bjmbr_iedboard(self):
         jspf = JournalStaticPageFile(self.html_file('bjmbr_iedboard'))
@@ -280,6 +204,7 @@ class JournalStaticPageTestCase(BaseTestCase):
         self.assertFalse('"middle_end"' in jspf.body_content)
         jspf.insert_middle_end()
         self.assertTrue('"middle_end"' in jspf.body_content)
+        self.assertTrue(jspf.p_middle_end is not None)
 
     def test_insert_middle_end_bjgeo_pinstruct(self):
         jspf = JournalStaticPageFile(self.html_file('bjgeo_pinstruct'))
@@ -288,6 +213,7 @@ class JournalStaticPageTestCase(BaseTestCase):
         self.assertFalse('"middle_end"' in jspf.body_content)
         jspf.insert_middle_end()
         self.assertTrue('"middle_end"' in jspf.body_content)
+        self.assertTrue(jspf.p_middle_end is not None)
 
     def test_insert_middle_end_bjgeo_einstruct(self):
         jspf = JournalStaticPageFile(self.html_file('bjgeo_einstruct'))
@@ -296,6 +222,21 @@ class JournalStaticPageTestCase(BaseTestCase):
         self.assertFalse('"middle_end"' in jspf.body_content)
         jspf.insert_middle_end()
         self.assertTrue('"middle_end"' in jspf.body_content)
+        self.assertTrue(jspf.p_middle_end is not None)
+
+    def test_insert_middle_end_bjmbr_iinstruct(self):
+        jspf = JournalStaticPageFile(self.html_file('bjmbr_iinstruc'))
+        self.assertEqual(jspf.file_content.count('script=sci_serial'), 3)
+        self.assertTrue('Home' in jspf.file_content)
+        self.assertFalse('"middle_end"' in jspf.body_content)
+        jspf.insert_middle_end()
+        self.assertFalse('"middle_end"' in jspf.body_content)
+        self.assertTrue(jspf.p_middle_end is None)
+        middle = jspf.middle.strip()
+        begin = '<!-- #BeginEditable "texto" -->'
+        end = '<p>&nbsp;</p>'
+        self.assertEqual(middle[-len(end):], end)
+        self.assertEqual(middle[:len(begin)], begin)
 
     def test_unavailable_msg_es_abb_einstruc(self):
         jspf = JournalStaticPageFile(self.html_file('abb_einstruc'))

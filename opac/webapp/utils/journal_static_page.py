@@ -8,152 +8,115 @@ from slugify import slugify
 
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
-fh = logging.FileHandler('journal_pages.log', mode='w')
-fh.setLevel(logging.DEBUG)
-logger.addHandler(fh)
+LOGGING_LEVEL = os.environ.get('LOGGING_LEVEL', 'DEBUG')
+logging.basicConfig(level=LOGGING_LEVEL,
+                        filename='journal_pages.log',
+                        filemode='w')
+
+# fh = logging.FileHandler('journal_pages.log', mode='w')
+# fh.setLevel(logging.DEBUG)
+# logger.addHandler(fh)
 
 
-def get_new_journal_page(journal_pages_path, files):
-    """
-    Extract the header and the footer of the page
-    Insert the anchor based on filename
-    """
-    content = []
-    img_paths = []
-    unavailable_message = None
-    for file in files:
-        file_path = os.path.join(journal_pages_path, file)
-        page = JournalStaticPageFile(file_path)
-        if page.unavailable_message:
-            content.append(page.anchor)
-            unavailable_message = page.unavailable_message
+PAGE_NAMES = ['iaboutj.htm',
+              'iedboard.htm',
+              'iinstruc.htm',
+              'paboutj.htm',
+              'pedboard.htm',
+              'pinstruc.htm',
+              'eaboutj.htm',
+              'eedboard.htm',
+              'einstruc.htm',
+              ]
+
+PAGE_NAMES_BY_LANG = {
+    'en': ['iaboutj.htm',
+           'iedboard.htm',
+           'iinstruc.htm'],
+    'pt_BR': ['paboutj.htm',
+              'pedboard.htm',
+              'pinstruc.htm'],
+    'es': ['eaboutj.htm',
+           'eedboard.htm',
+           'einstruc.htm'],
+}
+
+
+class JournalPagesSourceFiles(object):
+
+    def __init__(self, revistas_path, img_revistas_path, acron):
+        self.revistas_path = revistas_path
+        self.img_revistas_path = img_revistas_path
+        self.acron = acron
+        self.journal_pages_path = os.path.join(revistas_path, acron)
+        self.used_names = []
+
+    def get_new_journal_page(self, files):
+        """
+        Extract the header and the footer of the page
+        Insert the anchor based on filename
+        """
+        content = []
+        img_paths = []
+        unavailable_message = None
+        for file in files:
+            file_path = os.path.join(self.journal_pages_path, file)
+            page = JournalStaticPageFile(file_path)
+            if page.unavailable_message:
+                content.append(page.anchor)
+                unavailable_message = page.unavailable_message
+            else:
+                content.append(page.body)
+                img_paths.extend(page.img_paths)
+        if unavailable_message is not None:
+            content.append(unavailable_message)
+        return '\n'.join(content), sorted(list(set(img_paths)))
+
+    def _find_journal_page_img_file(self, img_in_file):
+        img_basename = os.path.basename(img_in_file)
+        location = os.path.join(self.journal_pages_path, img_basename)
+        if not os.path.isfile(location):
+            if '/img/revistas/' in img_in_file:
+                location = os.path.join(
+                    self.img_revistas_path,
+                    img_in_file[img_in_file.find('/img/revistas/') +
+                                len('/img/revistas/'):])
+            elif '/revistas/' in img_in_file:
+                location = os.path.join(
+                    self.revistas_path,
+                    img_in_file[img_in_file.find('/revistas/') +
+                                len('/revistas/'):])
+        try:
+            # Verifica se a imagem existe
+            open(location)
+        except IOError as e:
+            logging.error(
+                u'%s (corresponding to %s)' % (e, img_in_file))
         else:
-            content.append(page.body)
-            img_paths.extend(page.img_paths)
-    if unavailable_message is not None:
-        content.append(unavailable_message)
-    return '\n'.join(content), sorted(list(set(img_paths)))
+            return location
 
-
-def find_journal_page_img_file(img_in_file, acron, revistas_path,
-                               img_revistas_path):
-    img_basename = os.path.basename(img_in_file)
-    revistas_acron_path = os.path.join(revistas_path, acron)
-    location = os.path.join(revistas_acron_path, img_basename)
-    if not os.path.isfile(location):
-        if '/img/revistas/' in img_in_file:
-            location = os.path.join(
-                img_revistas_path,
-                img_in_file[img_in_file.find('/img/revistas/') +
-                            len('/img/revistas/'):])
-        elif '/revistas/' in img_in_file:
-            location = os.path.join(
-                revistas_path,
-                img_in_file[img_in_file.find('/revistas/')+len('/revistas/'):])
-    try:
-        # Verifica se a imagem existe
-        open(location)
-    except IOError as e:
-        logging.error(
-            u'%s (corresponding to %s)' % (e, img_in_file))
-    else:
-        return location
-
-
-def img_new_name(img_location, used_names):
-    img_basename = os.path.basename(img_location)
-    img_name, img_ext = os.path.splitext(img_basename)
-    if img_location is not None:
-        alt_name = slugify(img_name) + img_ext
-        if alt_name not in used_names:
-            new_img_name = alt_name
-        else:
-            new_img_name = img_basename
-        used_names.append(new_img_name)
-        return new_img_name
-
-
-def get_journal_page_img_paths(acron, images_in_file, revistas_path,
-                            img_revistas_path):
-    used_names = []
-    images = []
-    for img_in_file in images_in_file:
-        img_location = find_journal_page_img_file(img_in_file,
-                                                      acron,
-                                                      revistas_path,
-                                                      img_revistas_path)
+    def _img_new_name(self, img_location):
+        img_basename = os.path.basename(img_location)
+        img_name, img_ext = os.path.splitext(img_basename)
         if img_location is not None:
-            new_img_name = img_new_name(img_location, used_names)
-            img_dest_name = '%s_%s' % (acron, new_img_name)
-            images.append((img_in_file, img_location, img_dest_name))
-    return images
-
-
-class JournalStaticPage(object):
-
-    # about, editors, instructions, contact
-    # 'iaboutj.htm', 'iedboard.htm', 'iinstruc.htm'
-    anchors = {
-        'about': 'about',
-        'editors': 'edboard',
-        'instructions': 'instruc',
-    }
-
-    def __init__(self, filename, content):
-        self.filename = filename
-        self.content = content
-
-    @property
-    def header(self):
-        _header = None
-        if '<table' in self.content:
-            _header = self.content[self.content.find('<table'):]
-            _header = _header[:_header.find('</table>')+len('</table>')]
-            _header = _header.strip()
-            if _header.startswith('<table') and _header.endswith('</table>'):
-                pass
+            alt_name = slugify(img_name) + img_ext
+            if alt_name not in self.used_names:
+                new_img_name = alt_name
             else:
-                print(self.filename, 'header', 'unexpected format')
-                _header = None
-        return _header
+                new_img_name = img_basename
+            self.used_names.append(new_img_name)
+            return new_img_name
 
-    @property
-    def footer(self):
-        _footer = None
-        if 'script=sci_serial' in self.content:
-            p = self.content.rfind('script=sci_serial')
-            _footer = self.content[:p]
-            p = _footer.rfind('<p ')
-            _footer = self.content[p:]
-            _footer = _footer[:_footer.find('</body>')]
-            _footer = _footer.strip()
-            if _footer.startswith('<p') and _footer.endswith('</p>'):
-                pass
-            else:
-                print(self.filename, 'footer', 'unexpected format')
-                _footer = None
-        return _footer
-
-    @property
-    def anchor(self):
-        _anchor = None
-        for anchor_name, name in self.anchors.items():
-            if name in self.filename:
-                _anchor = anchor_name
-                break
-        if _anchor is not None:
-            return '<a name="{}">'.format(_anchor)
-        return ''
-
-    @property
-    def body(self):
-        if all([self.header, self.footer]):
-            new = self.content.replace(self.header, self.anchor)
-            new = new.replace(self.footer, '<hr noshade="" size="1"/>')
-            return new
-        return self.content
+    def get_journal_page_img_paths(self, images_in_file):
+        images = []
+        for img_in_file in images_in_file:
+            img_location = self._find_journal_page_img_file(img_in_file)
+            if img_location is not None:
+                new_img_name = self._img_new_name(img_location)
+                img_dest_name = '%s_%s' % (self.acron, new_img_name)
+                images.append((img_in_file, img_location, img_dest_name))
+        return images
 
 
 class JournalStaticPageFile(object):
@@ -173,6 +136,7 @@ class JournalStaticPageFile(object):
 
     def __init__(self, filename):
         self.filename = filename
+        self.file_content = self.read()
         self.name = os.path.basename(filename)
         self.version = self.versions[self.name[0]]
         self.get_tree()
@@ -209,8 +173,7 @@ class JournalStaticPageFile(object):
     def _info(self, msg):
         logger.debug('%s %s' % (self.filename, msg))
 
-    @property
-    def file_content(self):
+    def read(self):
         _content = None
         try:
             with open(self.filename, 'r', encoding='utf-8') as f:
@@ -245,13 +208,27 @@ class JournalStaticPageFile(object):
                             new_tag = self.tree.new_tag("b")
                             wrap(item, new_tag)
 
-    @property
-    def p_middle_begin(self):
+    def find_p_middle_begin(self):
         items = [p
                  for p in self._body_tree.find_all('p')
                  if p.get('id', '') == 'middle_begin']
         if len(items) == 1:
             return items[0]
+
+    def insert_middle_begin(self):
+        table = self.middle_begin_insertion_position
+        if table is not None:
+            new_tag = self.tree.new_tag("p")
+            new_tag['id'] = 'middle_begin'
+            table.insert_after(new_tag)
+            return new_tag
+
+    @property
+    def p_middle_begin(self):
+        p = self.find_p_middle_begin()
+        if p is None:
+            return self.insert_middle_begin()
+        return p
 
     @property
     def middle_begin_insertion_position(self):
@@ -261,23 +238,27 @@ class JournalStaticPageFile(object):
             if has_header(header):
                 return table
 
-    def insert_middle_begin(self):
-        if self.p_middle_begin is None:
-            table = self.middle_begin_insertion_position
-            if table is not None:
-                new_tag = self.tree.new_tag("p")
-                new_tag['id'] = 'middle_begin'
-                table.insert_after(new_tag)
-                return new_tag
-        return self.p_middle_begin
-
-    @property
-    def p_middle_end(self):
+    def find_p_middle_end(self):
         items = [p
                  for p in self._body_tree.find_all('p')
                  if p.get('id', '') == 'middle_end']
         if len(items) == 1:
             return items[0]
+
+    def insert_middle_end(self):
+        p = self.middle_end_insertion_position
+        if p is not None:
+            new_tag = self.tree.new_tag("p")
+            new_tag['id'] = 'middle_end'
+            p.insert_before(new_tag)
+            return new_tag
+
+    @property
+    def p_middle_end(self):
+        p = self.find_p_middle_end()
+        if p is None:
+            return self.insert_middle_end()
+        return p
 
     @property
     def middle_end_insertion_position(self):
@@ -300,33 +281,22 @@ class JournalStaticPageFile(object):
         if p is not None:
             return p
 
-    def insert_middle_end(self):
-        if self.p_middle_end is None:
-            p = self.middle_end_insertion_position
-            if p is not None:
-                new_tag = self.tree.new_tag("p")
-                new_tag['id'] = 'middle_end'
-                p.insert_before(new_tag)
-                return new_tag
-        return self.p_middle_end
-
-    def _get_middle_children_eval_child(self, child, p_begin, p_end, task):
+    def _get_middle_children_eval_child(self, child, task):
         if task == 'find_p_begin':
-            if child == p_begin:
+            if child == self.p_middle_begin:
                 task = 'find_p_end'
             return task, None
-        if task == 'find_p_end' and child == p_end:
+        if task == 'find_p_end' and child == self.p_middle_end:
             return 'stop', None
         if isinstance(child, Comment):
             return task, None
         return task, child
 
-    def _get_middle_children(self, p_begin, p_end):
+    def _get_middle_children(self):
         task = 'find_p_begin'
         items = []
         for child in self._body_tree.children:
-            task, item = self._get_middle_children_eval_child(
-                child, p_begin, p_end, task)
+            task, item = self._get_middle_children_eval_child(child, task)
             if item is not None:
                 items.append(item)
             elif task == 'stop':
@@ -374,17 +344,13 @@ class JournalStaticPageFile(object):
     @property
     def middle_children(self):
         if not hasattr(self, '_middle_children'):
-            self._remove_anchors()
-            self._insert_bold_to_p_subtitulo()
-            begin = self.insert_middle_begin()
-            end = self.insert_middle_end()
-            self._middle_children = self._get_middle_children(begin, end)
+            self._middle_children = self._get_middle_children()
         return self._middle_children
 
     @property
     def middle_items(self):
         if not hasattr(self, '_middle_items'):
-            self._middle_items = [child_tostring(item)
+            self._middle_items = [child_tostring(item).strip()
                                   for item in self.middle_children]
         return self._middle_items
 
@@ -411,9 +377,12 @@ class JournalStaticPageFile(object):
                         _img_paths.append(src)
         return _img_paths
 
-    @property
-    def alternative_middle_text(self):
-        middle = self.file_content
+    def get_alternative_middle_text(self):
+        _middle = self.file_content
+        for tag_name in ['table', 'p', 'body']:
+            for tag in ['<'+tag_name+' ', '<'+tag_name+'>', '</'+tag_name+'>']:
+                _middle = _middle.replace(tag.upper(), tag.lower())
+        middle = _middle
         if '</table>' in middle:
             middle = middle[middle.find('</table>')+len('</table>'):]
         if 'Home' in middle:
@@ -425,19 +394,37 @@ class JournalStaticPageFile(object):
         elif 'Voltar' in middle:
             middle = middle[:middle.rfind('Voltar')]
             middle = middle[:middle.rfind('<p')]
+        elif '<p class="rodape">' in middle:
+            middle = middle[:middle.rfind('<p class="rodape">')]
+        elif '://creativecommons.org' in middle:
+            middle = middle[:middle.rfind('://creativecommons.org')]
+            middle = middle[:middle.rfind('<p')]
         if '</body>' in middle:
             middle = middle[:middle.rfind('</body>')]
+        middle = middle.strip()
+        self._info('BEGIN:')
+        self._info(middle[:100])
+        self._info('END:')
+        self._info(middle[-100:])
+        self._info('REMOVED BEGIN:')
+        self._info(_middle[:_middle.find(middle)])
+        self._info('REMOVED END:')
+        self._info(_middle[_middle.find(middle)+len(middle):])
+
         return middle
 
     @property
-    def body(self):
+    def middle(self):
+        self._remove_anchors()
+        self._insert_bold_to_p_subtitulo()
         if self.p_middle_end is None:
-            middle = self.alternative_middle_text
-        else:
-            middle = self.middle_text
+            return self.get_alternative_middle_text()
+        return self.middle_text
 
+    @property
+    def body(self):
         return '<!-- inicio {} -->'.format(self.filename) + \
-               self.anchor + middle + '<hr noshade="" size="1"/>' + \
+               self.anchor + self.middle + '<hr noshade="" size="1"/>' + \
                '<!-- fim {} -->'.format(self.filename)
 
 
@@ -480,3 +467,46 @@ def wrap(child, new_tag):
     elif isinstance(child, element.NavigableString):
         return child.wrap(new_tag)
 
+
+def get_acron_list(REVISTAS_PATH):
+    acron_list = []
+    for item in os.listdir(REVISTAS_PATH):
+        path = os.path.join(REVISTAS_PATH, item)
+        if os.path.isdir(path):
+            if set(PAGE_NAMES) & set(os.listdir(path)) == set(PAGE_NAMES):
+                acron_list.append(item)
+    return acron_list
+
+
+def generate_journals_pages(REVISTAS_PATH, IMG_REVISTAS_PATH, acron_list=None):
+    if acron_list is None:
+        acron_list = get_acron_list(REVISTAS_PATH)
+    not_found = []
+    images = []
+    for acron in acron_list:
+        pages_source = JournalPagesSourceFiles(REVISTAS_PATH,
+                                               IMG_REVISTAS_PATH, acron)
+        for lang, files in PAGE_NAMES_BY_LANG.items():
+            content, images_in_file = pages_source.get_new_journal_page(files)
+            if content:
+                journal_img_paths = pages_source.get_journal_page_img_paths(
+                                                images_in_file)
+            if len(journal_img_paths) < len(images_in_file):
+                _found = [item[0] for item in journal_img_paths]
+                for img_in_file in images_in_file:
+                    if img_in_file not in _found:
+                        not_found.append((acron, lang, img_in_file))
+            images.extend(images_in_file)
+    open('images_in_file.txt', 'w').write(
+            '\n'.join(sorted(list(set(images)))))
+    open('images_not_found.log', 'w').write(
+            '\n'.join([str(item) for item in not_found]))
+
+
+if __name__ == '__main__':
+    import sys
+    paths = [item for item in sys.argv[1:3] if os.path.isdir(item)]
+    if len(paths) == 2:
+        generate_journals_pages(paths[0], paths[1])
+    else:
+        print('Usage: python journal_static_page.py revistas img_revistas')

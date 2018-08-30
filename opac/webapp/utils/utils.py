@@ -14,7 +14,6 @@ from flask import current_app
 
 import webapp
 import requests
-from utils.journal_static_page import JournalStaticPage
 from webapp import models
 
 from opac_schema.v1.models import Pages
@@ -282,7 +281,6 @@ def create_image(image_path, filename, thumbnail=False, check_if_exists=True):
     if not os.path.isdir(image_root):
         os.makedirs(image_root)
     image_destiation_path = os.path.join(image_root, filename)
-
     if check_if_exists:
         img = webapp.dbsql.session.query(
             models.Image).filter_by(name=filename).first()

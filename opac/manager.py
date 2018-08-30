@@ -5,7 +5,6 @@ import sys
 import json
 import fnmatch
 import unittest
-import logging
 from uuid import uuid4
 
 
@@ -13,8 +12,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 WEBAPP_PATH = os.path.abspath(os.path.join(HERE, 'webapp'))
 sys.path.insert(0, HERE)
 sys.path.insert(1, WEBAPP_PATH)
-
-LOGGING_LEVEL = os.environ.get('LOGGING_LEVEL', 'DEBUG')
 
 FLASK_COVERAGE = os.environ.get('FLASK_COVERAGE', None)
 
@@ -35,7 +32,7 @@ from webapp import create_app, dbsql, dbmongo, mail, cache  # noqa
 from opac_schema.v1.models import Collection, Sponsor, Journal, Issue, Article  # noqa
 from webapp import controllers  # noqa
 from webapp.utils import reset_db, create_db_tables, create_user, create_image, create_page # noqa
-from webapp.utils.journal_static_page import get_new_journal_page, get_journal_page_img_paths # noqa
+from webapp.utils.journal_static_page import JournalPagesSourceFiles, PAGE_NAMES_BY_LANG, get_acron_list # noqa
 
 from flask_script import Manager, Shell  # noqa
 from flask_migrate import Migrate, MigrateCommand  # noqa
@@ -359,46 +356,28 @@ def populate_journal_pages(
 
 
     """
-    logging.basicConfig(level=LOGGING_LEVEL,
-                        filename='journal_pages.log',
-                        filemode='w')
-
     acron_list = [journal.acronym for journal in Journal.objects.all()]
-    file_names = {'en': ['iaboutj.htm',
-                         'iedboard.htm',
-                         'iinstruc.htm'],
-                  'pt_BR': ['paboutj.htm',
-                            'pedboard.htm',
-                            'pinstruc.htm'],
-                  'es': ['eaboutj.htm',
-                         'eedboard.htm',
-                         'einstruc.htm'],
-                  }
     j_total = len(acron_list)
     done = 0
-
     for j, acron in enumerate(sorted(acron_list)):
         print('{}/{} {}'.format(j+1, j_total, acron))
-        for lang, files in file_names.items():
-            journal_pages_path = os.path.join(pages_source_path, acron)
-            content, images_in_file = get_new_journal_page(
-                                                    journal_pages_path, files)
+        pages_src_files = JournalPagesSourceFiles(pages_source_path,
+                                                  images_source_path, acron)
+        for lang, files in PAGE_NAMES_BY_LANG.items():
+            content, images_in_file = pages_src_files.get_new_journal_page(
+                                                    files)
             if content:
-                journal_img_paths = get_journal_page_img_paths(
-                                                            acron,
-                                                            images_in_file,
-                                                            pages_source_path,
-                                                            images_source_path)
-                for img_in_file, img_src, img_dest in journal_img_paths:
+                page_img_paths = pages_src_files.get_journal_page_img_paths(
+                                                            images_in_file)
+                for img_in_file, img_src, img_dest in page_img_paths:
                     img = create_image(img_src, img_dest, thumbnail=True)
                     content = content.replace(img_in_file,
                                               img.get_absolute_url)
-                return create_page(
-                    'Página secundária %s (%s)' % (acron.upper(), lang),
-                    lang, content, acron,
-                    'Página secundária do periódico %s' % acron)
+                create_page(
+                        'Página secundária %s (%s)' % (acron.upper(), lang),
+                        lang, content, acron,
+                        'Página secundária do periódico %s' % acron)
                 done += 1
-
     print('Páginas: {}\nPeriódicos: {}'.format(done, j_total))
 
 
