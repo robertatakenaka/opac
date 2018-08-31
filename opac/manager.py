@@ -370,7 +370,8 @@ def populate_journal_pages(
                 page_img_paths = pages_src_files.get_journal_page_img_paths(
                                                             images_in_file)
                 for img_in_file, img_src, img_dest in page_img_paths:
-                    img = create_image(img_src, img_dest)
+                    img = create_image(
+                        img_src, img_dest, check_if_exists=False)
                     content = content.replace(img_in_file,
                                               img.get_absolute_url)
                 create_page(

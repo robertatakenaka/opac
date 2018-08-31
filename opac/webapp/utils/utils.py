@@ -301,7 +301,6 @@ def create_image(image_path, filename, thumbnail=False, check_if_exists=True):
                            path='images/' + filename)
         webapp.dbsql.session.add(img)
         webapp.dbsql.session.commit()
-
         return img
 
 
