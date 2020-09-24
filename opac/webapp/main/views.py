@@ -820,14 +820,11 @@ def issue_toc(url_seg, url_seg_issue):
         # obtém somente os documentos da seção selecionada
         articles = articles.filter(section__iexact=section_filter)
 
-    # código desenecessário
-    issue_list = [_issue for _issue in issues]
-
     # obtém o issue anterior referente ao atual
-    previous_issue = utils.get_prev_issue(issue_list, issue)
+    previous_issue = utils.get_prev_issue(issues, issue)
 
     # obtém o issue seguinte referente ao atual
-    next_issue = utils.get_next_issue(issue_list, issue)
+    next_issue = utils.get_next_issue(issues, issue)
 
     # obtém PDF e TEXT de cada documento
     for article in articles:
