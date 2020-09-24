@@ -806,15 +806,15 @@ def issue_toc(url_seg, url_seg_issue):
     # obtém os documentos
     articles = controllers.get_articles_by_iid(issue.iid, is_public=True)
     if articles:
-        # obtém as seções dos documentos deste sumário
+        # obtém TODAS as seções dos documentos deste sumário
         sections = list(articles.item_frequencies('section').keys())
         sections = sorted([k for k in sections if k is not None])
     else:
         # obtém as seções dos documentos deste sumário
         sections = []
 
+    # obtém somente os documentos da seção selecionada
     if section_filter != '':
-        # obtém somente os documentos da seção selecionada
         articles = articles.filter(section__iexact=section_filter)
 
     # obtém todos os issues do journal
