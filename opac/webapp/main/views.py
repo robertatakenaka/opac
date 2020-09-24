@@ -793,6 +793,7 @@ def issue_toc(url_seg, url_seg_issue):
 
     # obtém o issue
     issue = controllers.get_issue_by_url_seg(url_seg, url_seg_issue)
+
     if not issue:
         abort(404, _('Número não encontrado'))
     if not issue.is_public:
@@ -820,11 +821,8 @@ def issue_toc(url_seg, url_seg_issue):
     # obtém todos os issues do journal
     issues = controllers.get_issues_by_jid(journal.id, is_public=True)
 
-    # obtém o issue anterior referente ao atual
-    previous_issue = utils.get_prev_issue(issues, issue)
-
-    # obtém o issue seguinte referente ao atual
-    next_issue = utils.get_next_issue(issues, issue)
+    # obtém os issues anterior e seguinte, referentes ao atual
+    previous_issue, next_issue = utils.get_prev_and_next_issues(issues, issue)
 
     # obtém PDF e TEXT de cada documento
     for article in articles:

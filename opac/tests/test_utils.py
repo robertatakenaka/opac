@@ -268,3 +268,62 @@ class UtilsTestCase(BaseTestCase):
             '<a href="/media/rbep_avaliacao_en.htm"></a>',
             new_content
         )
+
+
+class TestGetPrevAndNextIssues(BaseTestCase):
+
+    def test_get_prev_and_next_issues_returns_prev_and_next(self):
+        issue1 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '1', 'order': '1', })
+        issue2 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '2', 'order': '2', })
+        issue3 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '3', 'order': '3', })
+
+        # lista ordenada do mais recente para o mais antigo
+        issues = [issue3, issue2, issue1]
+
+        prev_issue, next_issue = wutils.get_prev_and_next_issues(issues, issue2)
+
+        self.assertEqual(prev_issue, issue1)
+        self.assertEqual(next_issue, issue3)
+
+    def test_get_prev_and_next_issues_returns_no_prev_and_no_next(self):
+        issue1 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '1', 'order': '1', })
+
+        # lista com único item
+        issues = [issue1]
+
+        prev_issue, next_issue = wutils.get_prev_and_next_issues(issues, issue1)
+
+        self.assertIsNone(prev_issue)
+        self.assertIsNone(next_issue)
+
+    def test_get_prev_and_next_issues_returns_previous_only(self):
+
+        issue1 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '1', 'order': '1', })
+        issue2 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '2', 'order': '2', })
+        # criando uma lista de números ordenada
+        issues = [issue2, issue1]
+
+        prev_issue, next_issue = wutils.get_prev_and_next_issues(
+            issues, issue2)
+        self.assertEqual(prev_issue, issue1)
+        self.assertIsNone(next_issue)
+
+    def test_get_prev_and_next_issues_returns_next_only(self):
+
+        issue1 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '1', 'order': '1', })
+        issue2 = utils.makeOneIssue({'year': '2016', 'volume': '1',
+                                     'number': '2', 'order': '2', })
+        # criando uma lista de números ordenada
+        issues = [issue2, issue1]
+
+        prev_issue, next_issue = wutils.get_prev_and_next_issues(issues, issue1)
+
+        self.assertEqual(next_issue, issue2)
+        self.assertIsNone(prev_issue)

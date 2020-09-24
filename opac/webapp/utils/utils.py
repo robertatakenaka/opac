@@ -164,6 +164,32 @@ def get_next_issue(issues, issue):
         return None
 
 
+def get_prev_and_next_issues(_issues, issue):
+    """
+    A lista de números é ordenada pelos números mais recentes para o mais
+    antigos, portanto para retornarmos os números mais antigos, devemos
+    caminhar pelo índice do valor menor para o maior, isso justifica
+    no previous soma 1 ao índice.
+
+    param: issues é a lista de issue (deve ser ordenado do número mais
+    recente para o mais antigo)
+    param: issue é o issue corrente.
+
+    Returns: tuple
+    """
+    issues = list(_issues)
+    index = issues.index(issue)
+    try:
+        previous = issues[index + 1]
+    except IndexError:
+        previous = None
+    try:
+        _next = issues[index - 1] if index > 0 else None
+    except IndexError:
+        _next = None
+    return previous, _next
+
+
 def get_label_issue(issue):
     label = 'Vol. %s ' % issue.volume if issue.volume else ''
     label += 'No. %s ' % issue.number if issue.number else ''
