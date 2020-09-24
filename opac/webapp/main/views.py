@@ -813,12 +813,12 @@ def issue_toc(url_seg, url_seg_issue):
         # obtém as seções dos documentos deste sumário
         sections = []
 
-    # obtém todos os issues do journal
-    issues = controllers.get_issues_by_jid(journal.id, is_public=True)
-
     if section_filter != '':
         # obtém somente os documentos da seção selecionada
         articles = articles.filter(section__iexact=section_filter)
+
+    # obtém todos os issues do journal
+    issues = controllers.get_issues_by_jid(journal.id, is_public=True)
 
     # obtém o issue anterior referente ao atual
     previous_issue = utils.get_prev_issue(issues, issue)
