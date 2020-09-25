@@ -554,16 +554,13 @@ def get_issues_by_jid(jid, **kwargs):
     - ``kwargs``: parâmetros de filtragem, utilize a chave ``order_by` para indicar
     uma lista de ordenação.
     """
-
-    order_by = kwargs.get('order_by', None)
-
+    order_by = kwargs.get('order_by')
     if order_by:
         del kwargs['order_by']
-    else:
-        order_by = ["-year", "-volume", "-order"]
-
-    if get_journal_by_jid(jid):
-        return Issue.objects(journal=jid, **kwargs).order_by(*order_by)
+    order_by = order_by or ["-year", "-volume", "-order"]
+    issues = Issue.objects(journal=jid, **kwargs)
+    if issues:
+        return issues.order_by(*order_by)
 
 
 def get_issues_for_grid_by_jid(jid, **kwargs):
