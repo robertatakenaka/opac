@@ -895,31 +895,9 @@ def get_articles_by_iid(iid, **kwargs):
         raise ValueError(__('Obrigatório um iid.'))
 
     articles = Article.objects(issue=iid, **kwargs).order_by('order')
-    if is_aop_issue(iid) or is_open_publication(articles):
+    if len({a.publication_date for a in articles}) > 1:
         return articles.order_by('-publication_date')
     return articles
-
-
-def is_aop_issue(iid):
-    """
-    É um conjunto de artigos "ahead of print
-    """
-    issue = get_issue_by_iid(iid)
-    if issue.number == 'ahead':
-        return True
-
-
-def is_open_publication(articles):
-    """
-    É um conjunto de artigos de publicação contínua
-    """
-    return all(
-        [article.publication_date and
-         len(article.publication_date.split('-')) == 3 and
-         not article.aop_pid
-         for article in articles
-        ]
-    )
 
 
 def get_article_by_pid(pid, **kwargs):
