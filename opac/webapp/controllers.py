@@ -723,12 +723,9 @@ def get_issue_by_url_seg(url_seg, url_seg_issue):
     - ``url_seg``: string, contém o seguimento da URL do Journal;
     - ``url_seg_issue``: string, contém o seguimento da URL do Issue,.
     """
-
-    journal = get_journal_by_url_seg(url_seg)
-
     if not url_seg and url_seg_issue:
         raise ValueError(__('Obrigatório um url_seg e url_seg_issue.'))
-
+    journal = get_journal_by_url_seg(url_seg)
     return Issue.objects.filter(journal=journal, url_segment=url_seg_issue, type__ne='pressrelease').first()
 
 
